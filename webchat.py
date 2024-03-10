@@ -4,7 +4,6 @@ from datetime import datetime
 from typing import Any
 
 import pinecone
-import torch
 from openai import OpenAI
 
 from global_functions import (
