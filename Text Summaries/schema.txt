@@ -1,0 +1,25 @@
+{
+    "name": "",
+    "profession": "",
+    "persona": "",
+    "age": "",
+    "gender": "",
+    "race/ethnicity": "",
+    "social status": "",
+    "family background/history": "",
+        "physical appearance": {
+        "height": "",
+        "weight": "",
+        "hair color": "",
+        "eye color": []
+    },
+    "skills": [],
+    "personality traits": [],
+    "allegiances": [],
+    "quests/missions": [],
+    "dialogue options": [],
+    "inventory": [],
+    "relationships": []
+    "home": "",
+}
+

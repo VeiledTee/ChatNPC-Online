@@ -1,0 +1,7 @@
+This is a brief description of <0>.
+<1>
+
+On a scale of 1 to 10, where 1 is purely mundane and 10 is extremely significant, rate the likely significance of the following information to <2>.
+
+Information: <3>
+Rate (return a number between 1 to 10):

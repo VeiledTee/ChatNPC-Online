@@ -1,0 +1,256 @@
+{
+    "characters": [
+        {
+            "name": "John Pebble",
+            "profession": "thief",
+            "persona": "I am a thief that lives near the village. I pickpocket villagers and loot their homes when while they are away. I hate to fight and I am very fast to flee from danger.",
+            "age": 28,
+            "gender": "male",
+            "race/ethnicity": "Caucasian",
+            "social status": "lower class",
+            "family background/history": "John Pebble's family has been living in the same village for generations. His father was a blacksmith, but John never took an interest in the trade.",
+            "physical appearance": {
+                "height": "5'9\"",
+                "weight": "160 lbs",
+                "hair color": "brown",
+                "eye color": ["blue"]
+            },
+            "skills": ["pickpocketing", "lockpicking"],
+            "personality traits": ["sneaky", "cautious", "greedy"],
+            "allegiances": ["the thieves' guild"],
+            "quests/missions": [
+                "Steal the mayor's prized possession",
+                "Assassinate a rival thief"
+            ],
+            "dialogue options": [
+                "I need your help with something",
+                "Can you teach me how to pickpocket?"
+            ],
+            "inventory": ["lockpick set", "stolen gold"],
+            "relationships": {
+                "friends": ["Sarah the tavern keeper", "Jack the fisherman"],
+                "enemies": ["The village watch", "A rival thief"],
+                "romantic interests": ["None"]
+            },
+            "home": "A small shack on the outskirts of Ashbourne"
+        },
+        {
+            "name": "Evelyn Stone-Brown",
+            "profession": "blacksmith",
+            "persona": "I am a blacksmith from Ashbourne, known for crafting some of the finest weapons and armor in the land. I take pride in my work and will go to great lengths to ensure my customers are satisfied.",
+            "age": 38,
+            "gender": "female",
+            "race/ethnicity": "Anglo-Saxon",
+            "social status": "middle class",
+            "family background/history": "Her father was also a blacksmith, and she learned the trade from him.",
+            "physical appearance": {
+                "height": "6'2",
+                "weight": "175 lbs",
+                "hair color": "black",
+                "eye color": ["brown", "green"]
+            },
+            "skills": ["metalworking", "swordsmithing", "armorsmithing"],
+            "personality traits": ["proud", "determined", "honest", "loyal"],
+            "allegiances": ["Ashbourne Blacksmiths Guild", "Kingdom of Albion"],
+            "quests/missions": [
+                "Craft a suit of armor for the king's army",
+                "Forge a magical weapon for a powerful wizard"
+            ],
+            "dialogue options": [
+                "Can you repair my sword?",
+                "What's the best metal for a blade?",
+                "Can you teach me how to blacksmith?"
+            ],
+            "inventory": [
+                "blacksmith hammer",
+                "tongs",
+                "anvil",
+                "metal scraps",
+                "finished weapons and armor"
+            ],
+            "relationships": {
+                "friends": ["local barkeep"],
+                "enemies": ["rival Ashbourne blacksmith"],
+                "romantic interests": ["Caleb Brown"]
+            },
+            "home": "Ashbourne"
+        },
+        {
+            "name": "Melinda Deek",
+            "profession": "knight",
+            "persona": "",
+            "age": 34,
+            "gender": "male",
+            "race/ethnicity": "European",
+            "social status": "high class",
+            "family background/history": "Melinda Deek comes from a long line of knights, and she was trained from a young age in the ways of chivalry and combat. Her family has always been loyal to the townm, and Melinda takes her duty to serve the town very seriously. She is terrified of chickens",
+            "physical appearance": {
+                "height": "6'2",
+                "weight": "183 lbs",
+                "hair color": "blonde",
+                "eye color": ["green"]
+            },
+            "skills": ["sword fighting", "horsemanship"],
+            "personality traits": ["honor-bound", "courageous", "chivalrous"],
+            "allegiances": ["the village of Ashbourne"],
+            "quests/missions": [
+                "Fortify the town against bandits",
+                "Investigate reports of bandit activity near the border"
+            ],
+            "dialogue options": [
+                "Greetings, traveler. How may I assist you?",
+                "Do you have any news from the front lines of the war?"
+            ],
+            "inventory": ["chain mail armor", "longsword"],
+            "relationships": {
+                "friends": [
+                    "Peter Satoru, an elderly archer",
+                    "Sarah Ratengen, the local tavern owner who she confides in when intoxicated"
+                ],
+                "enemies": ["The bandit faction seeking to pillage Ashbourne"],
+                "romantic interests": []
+            },
+            "home": "Redwood Lodge, a large townhouse near the heart of Ashbourne"
+        },
+        {
+            "name": "Sarah Ratengen",
+            "profession": "tavern owner",
+            "persona": "Sarah Ratengen runs the local tavern in Ashbourne. Her tavern is a popular spot for locals and travelers alike, offering a cozy atmosphere, good food, and drinks. Sarah is known for her warm hospitality and her willingness to lend a listening ear to those who need it.",
+            "age": 47,
+            "gender": "female",
+            "race/ethnicity": "European",
+            "social status": "middle class",
+            "family background/history": "Sarah comes from a long line of tavern owners. She inherited the business from her father, who ran the tavern before her.",
+            "physical appearance": {
+                "height": "5'6",
+                "weight": "145 lbs",
+                "hair color": "red",
+                "eye color": ["brown"]
+            },
+            "skills": ["cooking", "bartending"],
+            "personality traits": ["friendly", "compassionate", "good listener"],
+            "allegiances": ["the people of Ashbourne", "travelers"],
+            "quests/missions": [],
+            "dialogue options": [
+                "What can I get for you today?",
+                "Is there anything else I can help you with?"
+            ],
+            "inventory": ["barrels of ale and wine", "food supplies"],
+            "relationships": {
+                "friends": [
+                    "Jack McCaster, a local fisherman",
+                    "Caleb Brown, the local baker",
+                    "Melinda Deek, a local knight"
+                ],
+                "enemies": [],
+                "romantic interests": []
+            },
+            "home": "Upstairs of the tavern"
+        },
+        {
+            "name": "Peter Satoru",
+            "profession": "archer",
+            "persona": "Peter Satoru is an elderly archer who has lived in Ashbourne his entire life. He is a veteran of many battles and has a wealth of knowledge about combat and strategy. Despite his age, Peter is still an excellent archer, and he often trains younger archers in the town.",
+            "age": 65,
+            "gender": "male",
+            "race/ethnicity": "Asian",
+            "social status": "lower class",
+            "family background/history": "Peter grew up in a small village near Ashbourne. He learned archery from his father, who was also an archer.",
+            "physical appearance": {
+                "height": "5'8",
+                "weight": "160 lbs",
+                "hair color": "gray",
+                "eye color": ["brown"]
+            },
+            "skills": ["archery", "tactical planning"],
+            "personality traits": ["wise", "patient", "resilient"],
+            "allegiances": ["the people of Ashbourne"],
+            "quests/missions": ["Teach young archers in the town"],
+            "dialogue options": [
+                "Can I help you with anything?",
+                "Would you like to learn some archery techniques?"
+            ],
+            "inventory": ["bow and arrows"],
+            "relationships": {
+                "friends": [
+                    "Jack McCaster, the local fisherman",
+                    "Melinda Deek, a local knight"
+                ],
+                "enemies": [],
+                "romantic interests": []
+            },
+            "home": "A small cottage on the outskirts of town"
+        },
+        {
+            "name": "Jack McCaster",
+            "profession": "fisherman",
+            "persona": "Jack McCaster is a hard-working fisherman who makes his living on the shores of Ashbourne. He wakes up early every morning to set his nets and cast his lines, bringing in a bountiful catch to sell at the local market. Jack is a humble man who takes pride in his work and his ability to provide for his family.",
+            "age": 42,
+            "gender": "male",
+            "race/ethnicity": "European",
+            "social status": "lower class",
+            "family background/history": "Jack grew up in a small fishing village outside of Ashbourne. His father was a fisherman and taught Jack everything he knows about the trade. Jack carries on his family tradition of fishing and is well-respected in the town for his hard work and dedication to the craft.",
+            "physical appearance": {
+                "height": "6'0",
+                "weight": "180 lbs",
+                "hair color": "brown",
+                "eye color": ["blue"]
+            },
+            "skills": ["fishing", "navigation"],
+            "personality traits": ["hard-working", "humble", "resourceful"],
+            "allegiances": ["the people of Ashbourne"],
+            "quests/missions": [
+                "Catch enough fish to sell at the market",
+                "Navigate safely through stormy waters"
+            ],
+            "dialogue options": [
+                "Hello there! Need some fresh fish?",
+                "I know the best fishing spots around here. Want to come along?"
+            ],
+            "inventory": ["fishing nets", "fishing rods"],
+            "relationships": {
+                "friends": ["Peter Satoru, an elderly archer", "Sarah Ratengen"],
+                "enemies": [],
+                "romantic interests": []
+            },
+            "home": "A small house on the outskirts of Ashbourne, close to the shoreline"
+        },
+        {
+            "name": "Caleb Brown",
+            "profession": "baker",
+            "persona": "Caleb Brown is a friendly and hardworking baker who has lived in Ashbourne for his entire life. He learned his trade from his father, who owned a bakery in the town. Caleb is known for his delicious pies and pastries, which are in high demand among the locals and travelers passing through Ashbourne.",
+            "age": 38,
+            "gender": "male",
+            "race/ethnicity": "Caucasian",
+            "social status": "middle class",
+            "family background/history": "Caleb's family has been in the bakery business for generations. His father taught him everything he knows about baking, and he is now the owner of the family bakery in Ashbourne. Caleb is married to Evelyn Stone-Brown, the local blacksmith.",
+            "physical appearance": {
+                "height": "5'11",
+                "weight": "180 lbs",
+                "hair color": "brown",
+                "eye color": ["green"]
+            },
+            "skills": ["baking", "customer service"],
+            "personality traits": ["friendly", "hardworking", "detail-oriented"],
+            "allegiances": ["the people of Ashbourne"],
+            "quests/missions": [
+                "Bake and sell delicious pastries and pies",
+                "Expand the bakery's business"
+            ],
+            "dialogue options": [
+                "What can I get for you today?",
+                "How's your day going so far?"
+            ],
+            "inventory": ["flour", "sugar", "eggs", "butter"],
+            "relationships": {
+                "friends": [
+                    "Evelyn Stone-Brown, his wife",
+                    "Peter Satoru, a local archer"
+                ],
+                "enemies": ["John Pebble, who steals his freshly baked buns"],
+                "romantic interests": ["Evelyn Stone-Brown, his wife"]
+            },
+            "home": "A cozy house in Ashbourne, shared with his wife Evelyn Stone-Brown"
+        }
+    ]
+}

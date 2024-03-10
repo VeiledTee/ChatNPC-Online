@@ -1,0 +1,16 @@
+{
+    "DATASET": "train",
+    "INPUT_SIZE": 768,
+    "SEQUENCE_LENGTH": 128,
+    "HIDDEN_SIZE": 64,
+    "NUM_LAYERS": 2,
+    "OUTPUT_SIZE": 1,
+    "EPOCHS": 10,
+    "LEARNING_RATE": 0.001,
+    "CHKPT_INTERVAL": 1,
+    "TESTSET": "mismatch",
+    "DATE_FORMAT": "%Y-%m-%d %H:%M:%S",
+    "BATCH_SIZE_TRAIN": 1024,
+    "BATCH_SIZE_OTHER": 256,
+    "MODEL_NAME": "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7"
+}

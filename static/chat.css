@@ -1,0 +1,154 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #838383; /* Set the background color of the whole site */
+    color: white; /* Set the text color to white */
+}
+
+.container {
+    position: relative;
+    width: 80%; /* Take up 80% of the available width */
+    margin: 0 auto; /* Center the container */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    text-align: center;
+    margin: 0;
+    font-size: 56px;
+}
+
+#chatbox {
+    flex: 1; /* Allow chatbox to grow and take remaining space */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding: 10px;
+    background-color: #838383; /* Set the chatbox background color */
+    font-family: Consolas, monospace; /* Use Consolas for dialogue elements */
+}
+
+/* Add styles for multiple-choice options */
+#chatbox ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#chatbox li {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px;
+    margin: 4px 0;
+    border-radius: 5px;
+}
+
+#message-list li {
+    background-color: #4CAF50; /* Adjusted */
+    color: white;
+    padding: 8px;
+    margin: 4px 0;
+    border-radius: 5px;
+}
+
+#chat-form {
+    display: flex;
+    flex-direction: column; /* Change to column layout */
+    padding: 50px;
+    background-color: #838383;
+    border: 2px solid white;
+    box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.2);
+    margin-top: auto; /* Push the form to the bottom */
+}
+
+.character-container {
+    display: flex;
+    align-items: center; /* Align items vertically */
+    margin-bottom: 10px; /* Add space below */
+}
+
+.character-label {
+    font-size: 24px;
+    color: white;
+    margin-right: 10px; /* Add some space between label and dropdown */
+}
+
+#character-select {
+    width: 30%; /* Set width of the dropdown */
+    background-color: #fff; /* Set background color */
+    color: #000; /* Set text color */
+    font-size: 18px; /* Increase font size */
+}
+
+.input-box {
+    display: flex;
+    align-items: center;
+    width: 100%; /* Ensure the input box and button span the line's width */
+}
+
+#user-input {
+    flex: 1;
+    padding: 0.5% 2.5% 0.5%;
+    background-color: #fff;
+    color: #000;
+    font-size: 18px;
+    width: 85%; /* Occupy 85% of the width, considering the 5% padding on each side */
+    box-sizing: border-box;
+}
+
+#send-button {
+    flex: 0 0 15%; /* Constrain button to 15% without growing or shrinking */
+    color: black;
+    border: none;
+    padding: 3px 10px;
+    text-align: center;
+    text-decoration: none;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 24px;
+    transition: box-shadow 0.3s ease;
+}
+
+#send-button.active {
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4), -2px -2px 5px rgba(255, 255, 255, 0.4); /* Add shadows */
+}
+
+#message-list, .player-response, .character-response {
+    font-family: Consolas, monospace; /* Use Consolas for dialogue elements */
+}
+
+/* Add styles for multiple-choice options */
+.options-container {
+    display: flex;
+    flex-direction: column; /* Change to column layout */
+}
+
+.option-btn {
+    width: 80%; /* Set width to 80% */
+    background-color: #D41159;
+    color: white;
+    padding: 8px;
+    margin: 4px auto; /* Center the buttons horizontally */
+    border-radius: 5px;
+    font-size: 18px;
+    font-family: Consolas, monospace;
+    cursor: pointer;
+}
+
+.option-btn.selected {
+    background-color: #1A85FF; /* Change to cyan for selected button */
+}
+
+.option-btn.blurred {
+    background-color: #D41159; /* Soft red for unselected button */
+}
+
+.option-selected .option-btn:not(.selected):hover {
+    background-color: #D41159; /* Keep original color on hover */
+}
+
+.option-btn:hover {
+    background-color: #1A85FF; /* Light cyan on hover */
+}

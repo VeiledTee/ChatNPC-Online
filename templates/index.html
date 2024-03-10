@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ChatNPC</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='chat.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/smile.svg') }}">
+</head>
+<body>
+<div class="container">
+    <h1>ChatNPC</h1>
+    <div id="chatbox">
+        <ul id="message-list">
+            <!-- Chatbot responses and user messages will be displayed here -->
+        </ul>
+    </div>
+    <!-- Dropdown menu with character names -->
+    <form id="chat-form">
+        <div class="character-container">
+            <label for="character-select" class="character-label">Select a Character: </label>
+            <select id="character-select" name="character_select">
+                <option value="" disabled selected>Choose one of the following</option>
+                <option value="caleb_brown">Caleb Brown</option>
+                <option value="john_pebble">John Pebble</option>
+                <option value="peter_satoru">Peter Satoru</option>
+                <option value="melinda_deek">Melinda Deek</option>
+                <option value="jack_mccaster">Jack McCaster</option>
+                <option value="sarah_ratengen">Sarah Ratengen</option>
+                <option value="evelyn_stone-brown">Evelyn Stone-Brown</option>
+            </select>
+        </div>
+        <div class="input-box">
+            <input type="text" id="user-input" name="user_input" placeholder="Type your message..." disabled>
+            <input type="submit" id="send-button" value="Send" disabled>
+        </div>
+    </form>
+
+    <audio autoplay id="auto-play-audio">
+        <!-- Initially, the source is set to a placeholder URL; it will be updated dynamically in JavaScript -->
+        <source src="" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+</div>
+<!-- Include the chat.js JavaScript file -->
+<script src="{{ url_for('static', filename='chat.js') }}"></script>
+</body>
+</html>

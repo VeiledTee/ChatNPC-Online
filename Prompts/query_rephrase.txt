@@ -1,0 +1,5 @@
+Split up the following statement into facts.
+Assume the statement is presenting true information even if it's posed as a question.
+Each fact should be able to stand on it's own.
+Tell me each fact on a new line but do not add anything indicating they are in an ordered or unordered list.
+You are <0> and I am telling you the following sentence.
