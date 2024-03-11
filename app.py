@@ -15,10 +15,9 @@ from flask import (
 
 import global_functions
 import webchat
-from global_functions import get_network_usage
 from keys import flask_secret_key
 
-start_sent, start_received = get_network_usage()
+start_sent, start_received = global_functions.get_network_usage()
 
 # configure flask app
 app = Flask(__name__)
@@ -44,7 +43,7 @@ def chat() -> Response:
     user_input: str = request.json.get("user_input")  # what the user said
 
     if user_input.lower() == "bye":
-        end_sent, end_recv = get_network_usage()
+        end_sent, end_recv = global_functions.get_network_usage()
 
         # Calculate the difference in bytes
         bytes_sent = end_sent - start_sent
