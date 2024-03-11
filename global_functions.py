@@ -5,6 +5,9 @@ import torch
 from sentence_transformers import SentenceTransformer
 import pinecone
 import psutil
+import os
+
+USERNAME = os.environ.get('USERNAME', None)
 
 
 def embed(query: str) -> list[float]:
@@ -79,6 +82,7 @@ def namespace_exist(namespace: str) -> bool:
         include_metadata=True,
         namespace=namespace,
         filter={
+            "user": USERNAME,
             "$or": [
                 {"type": {"$eq": "background"}},
                 {"type": {"$eq": "response"}},

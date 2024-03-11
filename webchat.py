@@ -16,6 +16,9 @@ from global_functions import (
 from keys import openAI_API, pinecone_API, pinecone_ENV
 from retrieval import context_retrieval
 from config import Config
+import os
+
+USERNAME = os.environ.get('USERNAME', None)
 
 configuration = Config("config.json")
 DATE_FORMAT = configuration.DATE_FORMAT
@@ -171,6 +174,7 @@ def retrieve_context_list(
             include_metadata=True,
             namespace=namespace,
             filter={
+                "user": USERNAME,
                 "$or": [
                     {"type": {"$eq": "background"}},
                     {"type": {"$eq": "response"}},
@@ -223,6 +227,7 @@ def handle_contradiction(
             include_metadata=True,
             namespace=namespace,
             filter={
+                "user": USERNAME,
                 "$or": [
                     {"type": {"$eq": "background"}},
                     {"type": {"$eq": "response"}},
@@ -243,6 +248,7 @@ def handle_contradiction(
                     namespace, s2_vector["vectors"]["s2"]["metadata"]["text"]
                 ),
                 "last_accessed": cur_time.strftime(DATE_FORMAT),
+                "user": USERNAME,
             },
             "values": s2_vector["vectors"]["s2"]["values"],
         }  # build dict for upserting
@@ -265,6 +271,7 @@ def handle_contradiction(
                     namespace, s2_vector["vectors"]["s2"]["metadata"]["text"]
                 ),
                 "last_accessed": cur_time.strftime(DATE_FORMAT),
+"user": USERNAME,
             },
             "values": s2_vector["vectors"]["s2"]["values"],
         }  # build dict for upserting
@@ -278,6 +285,9 @@ def handle_contradiction(
             s1_vector["vectors"]["s1"]["values"],
             top_k=1,
             namespace=namespace,
+            filter={
+                "user": USERNAME,
+            }
         )
         # delete s1, s2, and s1 copy
         index.delete(
@@ -293,6 +303,9 @@ def handle_contradiction(
             include_metadata=True,
             inclue_vectors=True,
             namespace=namespace,
+            fileter={
+                "user": USERNAME
+            }
         )  # get record with highest index value
 
         if to_move_up[
@@ -392,6 +405,7 @@ def upload_background(character: str, index_name: str = "chatnpc-index") -> None
                 "type": "background",
                 "poignancy": 10,
                 "last_accessed": cur_time.strftime(DATE_FORMAT),
+"user": USERNAME,
             },
             "values": embed(info),
         }
@@ -423,6 +437,7 @@ def upload_contradiction(
                 "type": "response",
                 "poignancy": 10,
                 "last_accessed": cur_time.strftime(DATE_FORMAT),
+"user": USERNAME,
             },
             "values": embed(info),
         }  # build dict for upserting
@@ -474,6 +489,7 @@ def upload(
                 "type": text_type,
                 "poignancy": find_importance(namespace, info),
                 "last_accessed": cur_time.strftime(DATE_FORMAT),
+"user": USERNAME,
             },
             "values": embed(info),
         }  # build dict for upserting

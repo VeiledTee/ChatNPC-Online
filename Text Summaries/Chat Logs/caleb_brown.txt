@@ -1,0 +1,53 @@
+version https://git-lfs.github.com/spec/v1
+oid sha256:68769bf42a0e168c62cbca5390f7be494233870051665309120e2d16730a22fd
+size 3357
+Player: what do you do?
+Caleb Brown: I run a bakery here in Ashbourne, where I spend my days baking pies, pastries, and various breads that the locals and travelers seem to love. It's a busy life, but I enjoy every moment of it, especially when I see customers enjoying my creations.
+Player: 
+Caleb Brown: Certainly, if you have any questions or need assistance, feel free to ask. I'm here to help!
+Player: what shope do you run in town?
+Caleb Brown: I run a bakery here in town, known for its pies and pastries.
+Player: do you have a menu for me?
+Caleb Brown: Certainly! We offer a variety of baked goods at my bakery. Our selection includes a range of breads, from classic white and whole grain to specialty loaves. We also have sweet and savory pies, pastries like croissants and danishes, and a selection of cookies and muffins. If you're looking for something specific or have any dietary preferences, just let me know and I'll be happy to help you find the perfect treat.
+Player: how much are your croissants and muffins?
+Caleb Brown: Our croissants are priced at $2.50 each, and the muffins are $2.00 apiece. Would you like to place an order for some?
+Player: no thank you. can you tell me where i can get my breastplate repaired? and where in town can i spend the night?
+Caleb Brown: Of course, if you're looking to get your breastplate repaired, you should head over to my wife Evelyn's forge. She's the local blacksmith and quite skilled with all sorts of metalwork. As for a place to spend the night, the Ashbourne Inn is a comfortable spot and it's not too far from the center of town. They offer a good night's sleep and have quite the cozy accommodations.
+Player: do you know what the inn serves for food and drinks?
+Caleb Brown: Yes, I'm familiar with what the Ashbourne Inn serves. They offer a range of hearty meals, perfect for travelers and locals alike. Their menu includes traditional dishes, and they have a selection of ales and wines. If you're looking for something specific, I can certainly ask Evelyn for more details, as she often forges some of their kitchenware and gets to hear about their latest offerings. Would you like me to find out more for you?
+Player: do you like being a baker
+Caleb Brown: Yes, I do enjoy being a baker. There's something truly special about the early mornings, the smell of fresh dough, and the satisfaction of seeing people enjoy the pastries and pies I create. It's not just a job for me; it's a passion that I've nurtured since I was young, learning from my father. Every day is an opportunity to bring a little joy to someone's day with something I've baked, and that's a wonderful feeling.
+Player: what do you do?
+Caleb Brown: I run a bakery here in Ashbourne, where I spend my days crafting pies and pastries that the folks around town seem to love. It's a busy life, but there's nothing quite like the smell of fresh bread and the smiles of satisfied customers to make it all worthwhile.
+Player: hi
+Caleb Brown: Hello there! How can I help you today?
+Player: hi
+Caleb Brown: Hello there! How can I help you today?
+Player: hi
+Caleb Brown: Hello there! How can I help you today?
+Player: Option A
+Caleb Brown: Option A isn't clear to me. Could you please provide more details or clarify what you're asking about Option A?
+Player: Option A
+Caleb Brown: Could you please provide more details regarding Option A? I'd be happy to discuss it once I have a bit more information.
+Player: Option C
+Caleb Brown: I'm not quite sure what you're referring to with "Option C." Could you please provide more details or clarify your question?
+Player: Option A
+Caleb Brown: Could you please provide more details regarding Option A? I'm not quite sure what you're referring to.
+Player: Option B
+Caleb Brown: I'm sorry, could you please provide more details or clarify what you mean by "Option B"? I want to make sure I give you the correct information or response you're looking for.
+Player: Option D
+Caleb Brown: I'm sorry, but I'm not sure what you're referring to with "Option D." Could you please provide more details or clarify your question?
+Player: 
+Caleb Brown: Oh, I see. So, just to make sure I've got it right, you're telling me that near Ashbourne, we have two rivers running parallel to each other, the gardens are brimming with vibrant flowers, and the forest around the village is a source of plentiful resources for us villagers. Is that correct?
+Player: 
+Caleb Brown: Could you please provide the question you'd like me to answer?
+Player: 
+Caleb Brown: Could you please share more about the resources that the forest provides to the villagers?
+Player: who are you
+Caleb Brown: I'm Caleb Brown, a baker from Ashbourne, known for my pies and pastries that folks seem to love, especially the travelers passing through.
+Player: oh so you're not a baker?
+Caleb Brown: Oh, but I am a baker indeed. It's my trade and passion. My pies and pastries are something I take great pride in.
+Player: 
+Caleb Brown: Oh, I'm glad to hear that! It's always a pleasure to know that my pies and pastries are enjoyed not just by the locals here in Ashbourne but also by the travelers passing through. It's one of the best parts of being a baker, seeing people relish the treats I make. If you're ever in town, be sure to stop by my bakery and try some for yourself!
+Player: hi
+Caleb Brown: Hello there! How can I help you today?

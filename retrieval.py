@@ -1,6 +1,9 @@
 import numpy as np
 from datetime import datetime
 import pinecone
+import os
+
+USERNAME = os.environ.get('USERNAME', None)
 
 
 def cos_sim(a: np.ndarray, b: np.ndarray) -> float:
@@ -84,6 +87,7 @@ def context_retrieval(
         include_metadata=True,
         namespace=namespace,
         filter={
+            "user": USERNAME,
             "$or": [
                 {"type": {"$eq": "background"}},
                 {"type": {"$eq": "response"}},

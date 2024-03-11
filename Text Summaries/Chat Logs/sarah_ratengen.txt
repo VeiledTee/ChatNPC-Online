@@ -1,0 +1,7 @@
+version https://git-lfs.github.com/spec/v1
+oid sha256:b8bc117cffe3c0c40385062769bc8d638dfabe58d009625d94d503fc67bec85a
+size 7495
+Player: hows your day
+Sarah Ratengen: My day's been quite busy, but good overall. I've had a steady stream of patrons, and the kitchen's been bustling with activity. How about yourself? How has your day been?
+Player: 
+Sarah Ratengen: Oh, it's lovely to see you here! Today's menu features some hearty stew, perfect for this weather, along with freshly baked bread from Caleb's bakery. We've also got a nice selection of cheeses and a catch of the day that Jack McCaster brought in this morning. To wash it all down, there's a new barrel of ale I've just tapped, as well as a variety of wines. What can I get for you?

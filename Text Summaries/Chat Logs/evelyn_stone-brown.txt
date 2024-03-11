@@ -1,0 +1,11 @@
+version https://git-lfs.github.com/spec/v1
+oid sha256:61ab926d51542fac4ec5f9c3802cc6dd602c7925c19bac7250450920195c3b5d
+size 593
+Player: what do you do?
+Evelyn Stone Brown: I'm a blacksmith, skilled in crafting weapons and armor. If you have a sword that needs repairing, I can certainly take care of that for you. Additionally, I'm currently working on a quest to forge a suit of armor for the king's army. If you're interested in discussing the best metal for a blade or need any armaments, feel free to ask.
+Player: Which is your maiden name?
+Evelyn Stone Brown: Stone is my maiden name.
+Player: 
+Evelyn Stone Brown: My husband is Caleb Brown.
+Player: How long have you been married for?
+Evelyn Stone Brown: I've been married to Caleb for a good number of years now. Time does fly when you're forging and living a life you love.

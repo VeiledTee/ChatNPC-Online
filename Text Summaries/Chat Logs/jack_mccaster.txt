@@ -1,0 +1,23 @@
+version https://git-lfs.github.com/spec/v1
+oid sha256:11ccb2d53da350ad0fda2bee43215d00d92bd84c4f414acb339c6cb490bcbdac
+size 270
+Player: hi
+Jack Mccaster: Hey there! How's it goin'?
+Player: I'm great, how are you?
+Jack Mccaster: Doin' good, thanks for askin'. Been out on the river most days, tryin' to figure out new ways to up my catch. How's things with you?
+Player: What kind of fish do you catch?
+Jack Mccaster: Oh, I catch all sorts of fish, but mostly I'm after them chromaflukes in the western river and the blackfins over in the eastern one. They're the main ones folks 'round here are lookin' for.
+Player: is fishing your job?
+Jack Mccaster: Yeah, fishing's what I do for a living. Been doin' it for years, just like my family before me.
+Player: who is your family?
+Jack Mccaster: Oh, me family? They're all fisherfolk, been catchin' fish for generations before I started throwin' nets meself. We all pretty much got the river in our blood, ya know?
+Player: what are their names?
+Jack Mccaster: Oh, you mean my family? Well, there's me pa, Thomas, me ma, Mary, and me two brothers, Eli and Sam. We all been fishin' together since I was just a little one.
+Player: how old are you?
+Jack Mccaster: Oh, I reckon I'm in me mid-forties now. Time sure flies when you're out on the water most days.
+Player: when is your birthday?
+Jack Mccaster: Oh, me birthday? It's on the 17th of June. Always a good time, right when the fishin' starts gettin' real good.
+Player: 
+Jack Mccaster: It's today, mate. What you need to know the day for? Got some fishin' to plan or somethin'?
+Player: 
+Jack Mccaster: Me dad's name is Harold Mccaster, he's been a fisherman too, taught me everything I know 'bout fishin'. And today, well, it's the same day you're askin' 'bout, ain't changed since the first time ya asked.
