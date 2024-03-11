@@ -1,4 +1,48 @@
 document.addEventListener('DOMContentLoaded', function () {
+    const chatContainer = document.querySelector('.chat-container');
+    const usernameForm = document.getElementById('username-form');
+    const usernameContainer = document.getElementById('username-container');
+
+    usernameForm.addEventListener('submit', function (e) {
+        e.preventDefault(); // Prevent the default form submission behavior
+
+        const usernameInput = document.getElementById('username').value;
+        fetch('/set_username', {
+                method: 'POST',
+                body: JSON.stringify({ username: usernameInput }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log("Username submitted successfully");
+
+                    // Hide the username container gradually
+                    let opacity = 1;
+                    const intervalId = setInterval(() => {
+                        opacity -= 0.05;
+                        usernameContainer.style.opacity = opacity;
+                        if (opacity <= 0) {
+                            clearInterval(intervalId);
+                            usernameContainer.style.display = 'none';
+                        }
+                    }, 50);
+
+                    // Scroll down to the chat container
+                    window.scrollTo({
+                        top: chatContainer.offsetTop,
+                        behavior: 'smooth'
+                    });
+                } else {
+                    console.error("Error submitting username");
+                }
+            })
+            .catch(error => {
+                console.error("Network or other error occurred while submitting username");
+            });
+    });
+
     const form = document.getElementById('chat-form');
     const chatbox = document.getElementById('chatbox');
     const userInput = document.getElementById('user-input');

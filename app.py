@@ -21,14 +21,6 @@ from keys import flask_secret_key
 start_sent, start_received = global_functions.get_network_usage()
 
 
-def setup_username():
-    # If username is not already set, prompt user to enter username
-    if 'username' not in session:
-        username = input("Please enter your username: ")
-        session['username'] = username
-        os.environ['USERNAME'] = username
-
-
 def create_app():
     app = Flask(__name__)
     app.static_folder = "static"
@@ -42,9 +34,16 @@ def create_app():
     stream_handler.setFormatter(formatter)
     logger.addHandler(stream_handler)
 
+    @app.route("/set_username", methods=["POST"])
+    def set_username():
+        data = request.get_json()
+        username = data.get("username")
+        session["username"] = username
+        os.environ["USERNAME"] = username
+        return jsonify({"message": "Username set successfully"})
+
     @app.route("/")
     def home():
-        setup_username()  # Call setup_username function when user accesses home page
         return render_template("index.html")
 
     @app.route("/chat", methods=["POST"])
