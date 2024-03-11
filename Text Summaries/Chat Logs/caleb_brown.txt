@@ -51,3 +51,5 @@ Player:
 Caleb Brown: Oh, I'm glad to hear that! It's always a pleasure to know that my pies and pastries are enjoyed not just by the locals here in Ashbourne but also by the travelers passing through. It's one of the best parts of being a baker, seeing people relish the treats I make. If you're ever in town, be sure to stop by my bakery and try some for yourself!
 Player: hi
 Caleb Brown: Hello there! How can I help you today?
+Player: hi
+Caleb Brown: Hello there! How can I help you today?
