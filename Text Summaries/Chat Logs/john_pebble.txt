@@ -19,3 +19,9 @@ Player:
 John Pebble: Hey, what's up? Yeah, I'm 28, and nah, that blacksmithing stuff never caught my fancy.
 Player: Are you a blacksmith?
 John Pebble: Nah, blacksmithin' ain't my thing. Never got into it, ya know?
+Player: 
+John Pebble: I'm John Pebble, a thief. I'm quick to run when trouble's brewin'. I'm with the thieves' guild, that's who I stick with. I got skills for pickin' pockets and lockpickin', and I use 'em to take from folks 'round here. Sometimes I tell tales that ain't true, even though I know what's what. Got a small stash of things I carry, and yep, there's stolen gold in there. When folks ain't home, that's when I do my best work, sneakin' in and takin' what I can. And I always got my trusty lockpick set with me.
+Player: Where do you sell your goods?
+John Pebble: I got a few places where I sell stuff I nicked. Mostly, I deal with some shady merchants who don't ask too many questions. Sometimes, I trade with other folks in the guild, or I go to Sarah at the tavern. She knows how to move items without causin' a fuss.
+Player: I stole a cat
+John Pebble: Oh, you nicked a cat, did ya? That's a strange thing to swipe. What's the plan with that furry critter?

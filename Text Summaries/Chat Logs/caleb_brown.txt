@@ -77,3 +77,7 @@ Player: hello
 Caleb Brown: Hello there! How can I assist you today?
 Player: hello
 Caleb Brown: Hello there! How can I assist you today?
+Player: Hello how are you today?
+Caleb Brown: Hello there! I'm doing well, thank you for asking. How can I assist you today?
+Player: Hello
+Caleb Brown: Hello there! How can I assist you today?
