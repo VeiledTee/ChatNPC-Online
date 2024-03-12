@@ -101,9 +101,11 @@ document.addEventListener('DOMContentLoaded', function () {
                         } else {
                             console.error("Failed to upload background.");
                         }
+                        hideThinkingAnimation();
                     })
                     .catch(error => {
                         console.error("Error uploading background:", error);
+                        hideThinkingAnimation();
                     });
 
                 } else {
@@ -124,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const form = document.getElementById('chat-form');
     const chatbox = document.getElementById('chatbox');
-        const userInput = document.getElementById('user-input');
+    const userInput = document.getElementById('user-input');
     const sendButton = document.getElementById('send-button');
 
     // Function to populate the input box with placeholder text
@@ -165,7 +167,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         chatbox.innerHTML += `<p><strong>${username}:</strong> ${userMessage}</p>`;
         userInput.value = '';
-        console.log("fetch 1 pre chat character", selectedCharacter)
+
+        // Show thinking animation before sending the request
+        showThinkingAnimation();
         // Ensure selectedCharacter is not null before sending the /chat request
         if (selectedCharacter) {
             fetch('/chat', {
@@ -194,11 +198,12 @@ document.addEventListener('DOMContentLoaded', function () {
             } else {
                 chatbox.innerHTML += `<p><strong>${nameConversion(toSnakeCase=false, toConvert=selectedCharacter)}: </strong>${responseText}</p>`;
             }
-
+            hideThinkingAnimation();
             chatbox.scrollTop = chatbox.scrollHeight;
         })
         .catch(error => {
             console.error('Error:', error);
+            hideThinkingAnimation();
         });
 
         selectedOptionIndex = null; // Reset the selected option after sending the request
@@ -332,6 +337,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 return p1 + p2.toUpperCase();
             });
         }
+    }
+
+    function showThinkingAnimation() {
+        document.getElementById('thinking-animation').style.display = 'block';
+    }
+
+    // You can trigger this function when the bot has processed the input and ready to display the response
+    function hideThinkingAnimation() {
+        document.getElementById('thinking-animation').style.display = 'none';
     }
 
 });
