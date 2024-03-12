@@ -370,7 +370,10 @@ def upload_background(character: str, index_name: str = "chatnpc-index") -> None
     with open("Text Summaries/characters.json", "r") as character_info_file:
         character_names = json.load(character_info_file)
 
-    data_file: str = f"Text Summaries/Summaries/{character_names[global_functions.name_conversion(to_snake_case=False, to_convert=character)]}.txt"
+    if ' ' not in character:
+        character = global_functions.name_conversion(to_snake_case=False, to_convert=character)
+
+    data_file: str = f"Text Summaries/Summaries/{character_names[character]}.txt"
     # setting_file: str = "Text Summaries/Summaries/ashbourne.txt"
     namespace: str = extract_name(data_file).lower()
     # background has already been uploaded if namespace exists so can skip repeat uploads
