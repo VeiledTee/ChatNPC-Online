@@ -6,6 +6,7 @@ from typing import Any
 import pinecone
 from openai import OpenAI
 
+import global_functions
 from global_functions import (
     embed,
     extract_name,
@@ -369,7 +370,7 @@ def upload_background(character: str, index_name: str = "chatnpc-index") -> None
     with open("Text Summaries/characters.json", "r") as character_info_file:
         character_names = json.load(character_info_file)
 
-    data_file: str = f"Text Summaries/Summaries/{character_names[character]}.txt"
+    data_file: str = f"Text Summaries/Summaries/{character_names[global_functions.name_conversion(to_snake_case=False, to_convert=character)]}.txt"
     # setting_file: str = "Text Summaries/Summaries/ashbourne.txt"
     namespace: str = extract_name(data_file).lower()
     # background has already been uploaded if namespace exists so can skip repeat uploads
@@ -513,7 +514,7 @@ def fact_rephrase(phrase: str, namespace: str, text_type: str) -> list[str]:
                 "role": "system",
                 "content": prompt_engineer_from_template(
                     template_file="Prompts/background_rephrase.txt",
-                    data=[name_conversion(to_snake=False, to_convert=namespace)],
+                    data=[name_conversion(to_snake_case=False, to_convert=namespace)],
                 ),
             }
         )
@@ -523,7 +524,7 @@ def fact_rephrase(phrase: str, namespace: str, text_type: str) -> list[str]:
                 "role": "system",
                 "content": prompt_engineer_from_template(
                     template_file="Prompts/response_rephrase.txt",
-                    data=[name_conversion(to_snake=False, to_convert=namespace)],
+                    data=[name_conversion(to_snake_case=False, to_convert=namespace)],
                 ),
             }
         )
@@ -533,7 +534,7 @@ def fact_rephrase(phrase: str, namespace: str, text_type: str) -> list[str]:
                 "role": "system",
                 "content": prompt_engineer_from_template(
                     template_file="Prompts/query_rephrase.txt",
-                    data=[name_conversion(to_snake=False, to_convert=namespace)],
+                    data=[name_conversion(to_snake_case=False, to_convert=namespace)],
                 ),
             }
         )
@@ -550,7 +551,7 @@ def fact_rephrase(phrase: str, namespace: str, text_type: str) -> list[str]:
 
 
 def find_importance(namespace: str, fact: str) -> int:
-    character_name: str = name_conversion(to_snake=False, to_convert=namespace)
+    character_name: str = name_conversion(to_snake_case=False, to_convert=namespace)
     with open(f"Text Summaries/Summaries/{namespace}.txt", "r") as character_file:
         character_info: str = character_file.read()
 
@@ -627,10 +628,10 @@ def answer(
         cur_voice: str = model_pairings[namespace.replace("-", "_")]
 
     if not os.path.exists(
-        f"static/audio/{name_conversion(to_snake=False, to_convert=namespace)}"
+        f"static/audio/{name_conversion(to_snake_case=False, to_convert=namespace)}"
     ):
         os.makedirs(
-            f"static/audio/{name_conversion(to_snake=False, to_convert=namespace)}"
+            f"static/audio/{name_conversion(to_snake_case=False, to_convert=namespace)}"
         )
 
     msgs: list[dict] = chat_history
@@ -652,7 +653,7 @@ def answer(
         filename = f"{namespace}_{timestamp}.mp3"
 
         audio_reply.stream_to_file(
-            f"static/audio/{name_conversion(to_snake=False, to_convert=namespace)}/{filename}"
+            f"static/audio/{name_conversion(to_snake_case=False, to_convert=namespace)}/{filename}"
         )
     return clean_res, int(res.usage.prompt_tokens), int(res.usage.completion_tokens)
 
@@ -713,13 +714,41 @@ def are_contradiction(premise_a: str, premise_b: str) -> bool:
 
 
 if __name__ == "__main__":
+    cur_time = datetime.now()
+    index: pinecone.Index = pinecone.Index("chatnpc-index")
+    s1_dict = {
+            "id": "s1",
+            "metadata": {
+                "text": "This is a test boi",
+                "type": "response",
+                "poignancy": 6,
+                "last_accessed": cur_time.strftime(DATE_FORMAT),
+                "user": USERNAME,
+            },
+            "values": embed('This is a test boi'),
+        }
+    s2_dict = {
+        "id": "s2",
+        "metadata": {
+            "text": "Also a test boi",
+            "type": "response",
+            "poignancy": 5,
+            "last_accessed": cur_time.strftime(DATE_FORMAT),
+            "user": USERNAME,
+        },
+        "values": embed(''),
+    }
     # print(are_contradiction("blackfins only live in the east river", "blackfins only live in the west river"))
     # print(are_contradiction("blackfins live in the east river", "blackfins live in the west river"))
-    handle_contradiction(contradictory_index=0, namespace="peter-satoru")
+    handle_contradiction(contradictory_index=0, namespace="peter_satoru")
     print("0 works")
-    handle_contradiction(contradictory_index=1, namespace="peter-satoru")
+    index.upsert(vectors=[s1_dict, s2_dict], namespace='peter_satoru')
+    handle_contradiction(contradictory_index=1, namespace="peter_satoru")
     print("1 works")
-    handle_contradiction(contradictory_index=2, namespace="peter-satoru")
+    index.upsert(vectors=[s1_dict, s2_dict], namespace='peter_satoru')
+    handle_contradiction(contradictory_index=2, namespace="peter_satoru")
     print("2 works")
-    handle_contradiction(contradictory_index=3, namespace="peter-satoru")
+    index.upsert(vectors=[s1_dict, s2_dict], namespace='peter_satoru')
+    handle_contradiction(contradictory_index=3, namespace="peter_satoru")
     print("3 works")
+    index.upsert(vectors=[s1_dict, s2_dict], namespace='peter_satoru')
