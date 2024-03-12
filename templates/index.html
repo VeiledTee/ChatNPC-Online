@@ -6,51 +6,78 @@
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/smile.svg') }}">
 </head>
 <body>
-<div id="username-container">
-    <form id="username-form">
-        <div class="centered">
-            <label for="username">Welcome! Please enter your username:</label><br>
-            <input type="text" id="username" name="username" placeholder="Your username here"><br>
-            <input type="submit" value="Submit">
-        </div>
-    </form>
-</div>
-
-    <div class="chat-container">
-        <h1>ChatNPC</h1>
-        <div id="chatbox">
-            <ul id="message-list">
-                <!-- Chatbot responses and user messages will be displayed here -->
-            </ul>
-        </div>
-        <!-- Dropdown menu with character names -->
-        <form id="chat-form">
-            <div class="character-container">
-                <label for="character-select" class="character-label">Select a Character: </label>
-                <select id="character-select" name="character_select">
-                    <option value="" disabled selected>Choose one of the following</option>
-                    <option value="caleb_brown">Caleb Brown</option>
-                    <option value="john_pebble">John Pebble</option>
-                    <option value="peter_satoru">Peter Satoru</option>
-                    <option value="melinda_deek">Melinda Deek</option>
-                    <option value="jack_mccaster">Jack McCaster</option>
-                    <option value="sarah_ratengen">Sarah Ratengen</option>
-                    <option value="evelyn_stone-brown">Evelyn Stone-Brown</option>
-                </select>
-            </div>
-            <div class="input-box">
-                <input type="text" id="user-input" name="user_input" placeholder="Type your message..." disabled>
-                <input type="submit" id="send-button" value="Send" disabled>
+    <div id="username-container">
+        <form id="username-form">
+            <div class="centered">
+                <label for="username">Welcome! Please enter your username:</label><br>
+                <input type="text" id="username" name="username" placeholder="Your username here"><br>
+                <input type="submit" value="Submit">
             </div>
         </form>
-
-        <audio autoplay id="auto-play-audio">
-            <!-- Initially, the source is set to a placeholder URL; it will be updated dynamically in JavaScript -->
-            <source src="" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
     </div>
+
+    <div class="main-content" id="main-content" style="display: none;">
+        <div class="sidebar">
+            <h2>Characters</h2>
+            <ul id="character-list">
+                <li data-character="caleb_brown">Caleb Brown</li>
+                <li data-character="john_pebble">John Pebble</li>
+                <li data-character="peter_satoru">Peter Satoru</li>
+                <li data-character="melinda_deek">Melinda Deek</li>
+                <li data-character="jack_mccaster">Jack McCaster</li>
+                <li data-character="sarah_ratengen">Sarah Ratengen</li>
+                <li data-character="evelyn_stone-brown">Evelyn Stone-Brown</li>
+            </ul>
+        </div>
+
+        <div class="chat-container">
+            <h1>ChatNPC</h1>
+            <div id="chatbox">
+                <ul id="message-list">
+                    <!-- Chatbot responses and user messages will be displayed here -->
+                </ul>
+            </div>
+            <form id="chat-form">
+                <div class="input-box">
+                    <input type="text" id="user-input" name="user_input" disabled>
+                    <input type="submit" id="send-button" value="Send" disabled>
+<!--                    <button id="run-script-button">Clean Slate Protocol</button>-->
+                </div>
+            </form>
+
+            <audio autoplay id="auto-play-audio">
+                <!-- Initially, the source is set to a placeholder URL; it will be updated dynamically in JavaScript -->
+                <source src="" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+    </div>
+
+    <div id="popup-container">
+        <p id="popup-message">Select a character</p>
+        <button id="close-popup-btn">X</button>
+    </div>
+
     <!-- Include the chat.js JavaScript file -->
     <script src="{{ url_for('static', filename='chat.js') }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Add event listener to sidebar buttons
+            const sidebarButtons = document.querySelectorAll('.sidebar li');
+            sidebarButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    // Reset styles for all buttons
+                    sidebarButtons.forEach(btn => {
+                        btn.style.backgroundColor = '';
+                        btn.style.color = '';
+                    });
+
+                    // Apply styles for clicked button
+                    this.style.backgroundColor = 'white';
+                    this.style.color = 'black';
+                });
+            });
+        });
+    </script> <!-- script to swap background and text colour of sidebar buttons -->
 </body>
 </html>
