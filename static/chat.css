@@ -9,29 +9,14 @@ html, body {
     font-family: 'Inter', sans-serif;
     background-color: #838383; /* Set the background color of the whole site */
     color: white; /* Set the text color to white */
-}
-
-.chat-container {
-    position: relative;
-    width: 80%; /* Take up 80% of the available width */
-    margin: 0 auto; /* Center the container */
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack elements vertically */
 }
 
 h1 {
     text-align: center;
     margin: 0;
     font-size: 56px;
-}
-
-#chatbox {
-    flex: 1; /* Allow chatbox to grow and take remaining space */
-    overflow-y: auto; /* Enable vertical scrolling */
-    padding: 10px;
-    background-color: #838383; /* Set the chatbox background color */
-    font-family: Consolas, monospace; /* Use Consolas for dialogue elements */
 }
 
 /* Add styles for multiple-choice options */
@@ -97,7 +82,7 @@ h1 {
     padding: 0.5% 2.5% 0.5%;
     background-color: #fff;
     color: #000;
-    font-size: 18px;
+    font-size: 42px;
     width: 85%; /* Occupy 85% of the width, considering the 5% padding on each side */
     box-sizing: border-box;
 }
@@ -111,7 +96,7 @@ h1 {
     text-decoration: none;
     text-decoration: none;
     display: inline-block;
-    font-size: 24px;
+    font-size: 45px;
     transition: box-shadow 0.3s ease;
 }
 
@@ -157,32 +142,30 @@ h1 {
     background-color: #1A85FF; /* Light cyan on hover */
 }
 
-#username-container {
-    position: flex;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8); /* semi-transparent black background */
-    display: flex;
-    justify-content: center; /* center horizontally */
-    align-items: center; /* center vertically */
-    z-index: 9999; /* ensure it's above other content */
-}
-
 #username-container label {
     font-size: 36px;
     text-align: center;
+}
+
+#username-container {
+    height: 100vh; /* Take up the full viewport height */
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* semi-transparent black background */
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    z-index: 9999; /* ensure it's above other content */
+
+}
+
+.centered {
+    text-align: center; /* Center text */
 }
 
 #username-form {
     background-color: black; /* white background for the form */
     padding: 20px;
     border-radius: 10px; /* rounded corners */
-}
-
-.centered {
-    text-align: center; /* center text */
 }
 
 #username {
@@ -196,4 +179,117 @@ input[type="submit"] {
     width: 75%;
     font-size: 24px;
     text-align: center;
+}
+
+.main-content {
+    display: flex; /* Use flexbox for layout */
+    flex: 1; /* Take up remaining space */
+}
+
+.sidebar {
+    width: 20%; /* Set the width of the sidebar */
+    background-color: #000000;
+    padding: 20px;
+}
+
+.chat-container {
+    width: 80%; /* Set the width of the chatbox */
+    background-color: #838383; /* Set the background color of the chat container */
+    padding: 20px;
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack elements vertically */
+}
+
+#chatbox {
+    flex: 1; /* Take up remaining space */
+    overflow-y: auto; /* Allow vertical overflow scrolling */
+}
+
+#run-script-button {
+    color: black;
+    background-color: #1A85FF; /* Match the color of send button */
+    padding: 3px 10px;
+    text-align: center;
+    font-size: 24px;
+    border-radius: 20px; /* Make the corners softer to create a pill shape */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Add transition effect */
+}
+
+#run-script-button:hover {
+    background-color: #D41159; /* Darken the color on hover */
+}
+
+/* Add styles for sidebar options */
+.sidebar h2 {
+    text-align: center;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar li {
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    cursor: pointer; /* Change cursor to pointer */
+    transition: background-color 0.3s ease; /* Add transition effect */
+}
+
+.sidebar li:hover {
+    background-color: #333; /* Dark grey background on hover */
+}
+
+/* Add dark grey square underneath option on hover */
+.sidebar li:hover::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 10px;
+    background-color: #333; /* Dark grey */
+    bottom: 0;
+    left: 0;
+    border-radius: 0 0 5px 5px; /* Rounded corners for the square */
+}
+
+/* Change text color and background color when clicked */
+.sidebar li.clicked {
+    color: black;
+    background-color: white;
+}
+
+#popup-container {
+    position: absolute;
+    top: 15%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    background-color: #000000;
+    border: 1px solid #ccc;
+    padding: 12px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#popup-message {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+#close-popup-btn {
+    position: absolute; /* Position the close button */
+    top: 5px; /* Adjust top position */
+    right: 5px; /* Adjust right position */
+    color: white;
+    background-color: transparent;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+}
+
+#close-popup-btn:hover {
+    color: #ccc;
 }
