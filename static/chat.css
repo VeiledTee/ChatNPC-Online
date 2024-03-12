@@ -293,3 +293,72 @@ input[type="submit"] {
 #close-popup-btn:hover {
     color: #ccc;
 }
+
+.thinking-left {
+    position: absolute;
+    top: 50%;
+    left: 10px; /* Adjust as needed */
+    transform: translate(0, 0%);
+}
+
+.thought-bubble {
+    width: 50px; /* Adjust the size */
+    height: 30px; /* Adjust the size */
+    background-color: #fff;
+    border-radius: 25px 25px 25px 10px; /* Adjust border-radius accordingly */
+    border: 2px solid #ccc;
+    position: relative;
+    overflow: hidden;
+    animation: thinking 1.5s infinite;
+}
+
+.thinking-left {
+    position: absolute;
+    top: 50%;
+    left: 40px; /* Adjust as needed */
+    transform: translate(0, 0%);
+}
+
+.character-name {
+    position: absolute;
+    top: -20px; /* Adjust as needed */
+    left: -60px; /* Adjust as needed */
+    font-size: 14px; /* Adjust as needed */
+    color: #888; /* Adjust color if needed */
+}
+
+.dot {
+    width: 8px; /* Adjust size */
+    height: 8px; /* Adjust size */
+    background-color: #ccc;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    animation: fadeInOut 1.5s infinite;
+}
+
+.dot1 { left: 10%; }
+.dot2 { left: 30%; }
+.dot3 { left: 50%; }
+
+@keyframes thinking {
+    0% {
+        transform: translateX(0%); /* Adjust the percentage */
+    }
+    50% {
+        transform: translateX(75%); /* Adjust the percentage */
+    }
+    100% {
+        transform: translateX(0); /* Adjust the percentage */
+    }
+}
+
+@keyframes fadeInOut {
+    0%, 100% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+}
