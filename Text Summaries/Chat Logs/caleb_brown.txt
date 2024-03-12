@@ -59,3 +59,21 @@ Player: hello
 Caleb Brown: Hello there! How can I assist you today?
 Player: hi
 Caleb Brown: Hello there! How can I assist you today?
+Player: what do you do?
+Caleb Brown: I run a bakery here in Ashbourne, where I spend my days baking pies, pastries, and various breads that the locals and travelers seem to love. It's a busy life, but I enjoy every moment of it, especially when I see the satisfaction on my customers' faces.
+Player: 
+Caleb Brown: Hello there! It's always a pleasure to see customers enjoying the pies and pastries I bake. I'm constantly looking for ways to make my bakery even better. It's a busy life, but I wouldn't have it any other way. Living in Ashbourne in our cozy house makes it all worthwhile, especially knowing that both locals and travelers appreciate the treats I make.
+Player: Type your message...
+Caleb Brown: Hello there! If you have any questions or need information, feel free to ask. I'm here to help as best as I can.
+Player: hello there
+Caleb Brown: Hello there! How can I assist you today?
+Player: hello
+Caleb Brown: Hello there! How can I help you today?
+Player: hello
+Caleb Brown: Hello there! How can I assist you today?
+Player: hello
+Caleb Brown: Hello there! How can I assist you today?
+Player: hello
+Caleb Brown: Hello there! How can I assist you today?
+Player: hello
+Caleb Brown: Hello there! How can I assist you today?
