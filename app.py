@@ -42,6 +42,14 @@ def create_app():
         os.environ["USERNAME"] = username
         return jsonify({"message": "Username set successfully"})
 
+    @app.route("/select-character", methods=["POST"])
+    def select_character():
+        data = request.get_json()
+        selected_character = data.get("character")
+        print(selected_character)
+        # Process the selected character as needed
+        return jsonify({"message": "Character selected successfully"})
+
     @app.route("/")
     def home():
         return render_template("index.html")
@@ -61,12 +69,15 @@ def create_app():
             logger.info(f"Received: {bytes_recv / (1024 * 1024):.2f} MB")  # convert to MB
             return "Goodbye!"
 
-        selected_character: str = request.json.get("character_select")  # character name
+        data = request.get_json()
+        selected_character: str = global_functions.name_conversion(to_snake_case=False, to_convert=data.get("character"))
+        print(f"Chosen: {selected_character}")
 
         time_start = perf_counter()
         cur_namespace: str = global_functions.name_conversion(
-            to_snake=True, to_convert=selected_character
+            to_snake_case=True, to_convert=selected_character
         )
+        print(f"Namespace: {cur_namespace}")
 
         context: list[str] = webchat.retrieve_context_list(
             namespace=cur_namespace,
@@ -75,22 +86,23 @@ def create_app():
             n=10,
         )
 
-        logger.info(f"Pre-check context: \t{context}")
+        logger.info(f"Pre-check context: \t\t{context}")
 
         base_options: list[str] = ["Both statements are true", "Neither statement is true"]
         contradictory_premises = None
         contradiction: bool = False
 
-        for premise in context:
-            if webchat.are_contradiction(premise_a=user_input, premise_b=premise):
-                contradictory_premises = [premise, user_input]
-                webchat.upload_contradiction(
-                    namespace=cur_namespace,
-                    s1=premise,
-                    s2=user_input,
-                )
-                contradiction = True
-                break
+        if user_input:  # only check if user actually says something
+            for premise in context:
+                if webchat.are_contradiction(premise_a=user_input, premise_b=premise):
+                    contradictory_premises = [premise, user_input]
+                    webchat.upload_contradiction(
+                        namespace=cur_namespace,
+                        s1=premise,
+                        s2=user_input,
+                    )
+                    contradiction = True
+                    break
 
         # webchat.upload_contradiction(
         #     namespace=cur_namespace,
@@ -167,6 +179,8 @@ def create_app():
             f"Time per reply token: {time_passed_per_reply_token:.4f} seconds/token"
         )
 
+        logger.info(f"{selected_character} reply: {reply}")
+
         return jsonify(
             {"character": selected_character, "response": reply, "selected_option": None}
         )
@@ -202,6 +216,11 @@ def create_app():
     def get_audio(character_name, filename):
         audio_dir = os.path.join(os.path.join("static", "audio"), character_name)
         return send_from_directory(audio_dir, filename)
+
+    @app.route('/clean-slate', methods=['POST'])
+    def run_nuke_script():
+        exec(open("pinecone_clean_slate.py").read())
+        return jsonify({"message": "Script executed successfully"})
 
     return app
 
