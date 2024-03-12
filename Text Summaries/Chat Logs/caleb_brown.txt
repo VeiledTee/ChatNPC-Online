@@ -53,3 +53,9 @@ Player: hi
 Caleb Brown: Hello there! How can I help you today?
 Player: hi
 Caleb Brown: Hello there! How can I help you today?
+Player: what do you do?
+Caleb Brown: Hello there! I'm a baker by trade, and I run my own bakery here in Ashbourne. I specialize in making delicious pies and pastries, which are quite popular with both the locals and travelers who come through our town. I take pride in providing excellent customer service to everyone who visits my shop. Goodbye!
+Player: hello
+Caleb Brown: Hello there! How can I assist you today?
+Player: hi
+Caleb Brown: Hello there! How can I assist you today?
