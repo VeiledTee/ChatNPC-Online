@@ -521,26 +521,27 @@ def fact_rephrase(phrase: str, namespace: str, text_type: str) -> list[str]:
                 ),
             }
         )
-    elif text_type == "response":
-        msgs.append(
-            {
-                "role": "system",
-                "content": prompt_engineer_from_template(
-                    template_file="Prompts/response_rephrase.txt",
-                    data=[name_conversion(to_snake_case=False, to_convert=namespace)],
-                ),
-            }
-        )
-    elif text_type == "query":
-        msgs.append(
-            {
-                "role": "system",
-                "content": prompt_engineer_from_template(
-                    template_file="Prompts/query_rephrase.txt",
-                    data=[name_conversion(to_snake_case=False, to_convert=namespace)],
-                ),
-            }
-        )
+
+# elif text_type == "response":
+    #     msgs.append(
+    #         {
+    #             "role": "system",
+    #             "content": prompt_engineer_from_template(
+    #                 template_file="Prompts/response_rephrase.txt",
+    #                 data=[name_conversion(to_snake_case=False, to_convert=namespace)],
+    #             ),
+    #         }
+    #     )
+    # elif text_type == "query":
+    #     msgs.append(
+    #         {
+    #             "role": "system",
+    #             "content": prompt_engineer_from_template(
+    #                 template_file="Prompts/query_rephrase.txt",
+    #                 data=[name_conversion(to_snake_case=False, to_convert=namespace)],
+    #             ),
+    #         }
+    #     )
     prompt: str = f"Split this phrase into facts: {phrase}"
     msgs.append(
         {"role": "user", "content": prompt}

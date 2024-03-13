@@ -30,5 +30,8 @@ WORKDIR /app
 # Copy built files from the previous stage
 COPY --from=builder /app /app
 
+# Install gunicorn
+RUN pip install gunicorn
+
 # Specify the command to run on container start
-CMD ["python", "./app.py"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8080", "app:app"]
