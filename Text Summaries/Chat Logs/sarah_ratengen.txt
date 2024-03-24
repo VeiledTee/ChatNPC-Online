@@ -1,6 +1,3 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:b8bc117cffe3c0c40385062769bc8d638dfabe58d009625d94d503fc67bec85a
-size 7495
 Player: hows your day
 Sarah Ratengen: My day's been quite busy, but good overall. I've had a steady stream of patrons, and the kitchen's been bustling with activity. How about yourself? How has your day been?
 Player: 

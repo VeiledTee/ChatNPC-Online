@@ -1,6 +1,3 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:68769bf42a0e168c62cbca5390f7be494233870051665309120e2d16730a22fd
-size 3357
 Player: what do you do?
 Caleb Brown: I run a bakery here in Ashbourne, where I spend my days baking pies, pastries, and various breads that the locals and travelers seem to love. It's a busy life, but I enjoy every moment of it, especially when I see customers enjoying my creations.
 Player: 

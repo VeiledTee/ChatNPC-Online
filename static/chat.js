@@ -19,6 +19,26 @@ document.addEventListener('DOMContentLoaded', function () {
         username = usernameInput.value; // Update the outer scoped username variable
         console.log("Username:", username);
 
+        // Make a POST request to set the username
+        fetch('/set_username', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                username: username,
+            }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Handle the response from the server if needed
+            console.log(data.message);
+        })
+        .catch(error => {
+            // Handle any errors that occur during the fetch request
+            console.error('Error:', error);
+        });
+
         // Hide the username container
         const usernameContainer = document.getElementById('username-container');
         usernameContainer.style.display = 'none';
@@ -64,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function () {
         mainContent.scrollIntoView({ behavior: 'smooth' });
 
         // Show the popup after scrolling finishes
-        setTimeout(showPopup, 1000); // Adjust the delay as needed
+        setTimeout(showPopup, 500); // Adjust the delay as needed
     });
 
     const characterList = document.getElementById('character-list');
@@ -101,11 +121,9 @@ document.addEventListener('DOMContentLoaded', function () {
                         } else {
                             console.error("Failed to upload background.");
                         }
-                        hideThinkingAnimation();
                     })
                     .catch(error => {
                         console.error("Error uploading background:", error);
-                        hideThinkingAnimation();
                     });
 
                 } else {
@@ -307,15 +325,23 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     function getDynamicAudioURLAndPlay() {
-        fetch(`/get_latest_audio/${nameConversion(toSnakeCase=false, toConvert=selectedCharacter)}`)
+        // Retrieve the username from the outer scope
+        const username = getUsernameFromOuterScope();
+        console.log("Playing files for username", username)
+
+        fetch(`/get_latest_audio/${username}/${nameConversion(toSnakeCase=false, toConvert=selectedCharacter)}`)
         .then(response => response.json())
         .then(data => {
             const latestAudioURL = data.latest_audio_url;
-            console.log(latestAudioURL);
+            console.log("URL:", latestAudioURL);
 
             if (latestAudioURL) {
+                // Construct absolute URL by appending base URL
+                const baseURL = window.location.origin; // Get base URL of the current page
+                const absoluteURL = baseURL + latestAudioURL;
+
                 const autoPlayAudio = document.getElementById('auto-play-audio');
-                autoPlayAudio.querySelector('source').src = latestAudioURL;
+                autoPlayAudio.querySelector('source').src = absoluteURL;
                 autoPlayAudio.load();
                 autoPlayAudio.play();
             } else {
@@ -325,6 +351,12 @@ document.addEventListener('DOMContentLoaded', function () {
         .catch(error => {
             console.error("Error fetching the latest audio URL:", error);
         });
+    }
+
+    // Function to retrieve the username from the outer scope
+    function getUsernameFromOuterScope() {
+        // Return the username variable defined in the outer scope
+        return username;
     }
 
     function nameConversion(toSnakeCase, toConvert) {

@@ -17,8 +17,9 @@ from global_functions import (
 )
 from keys import openAI_API, pinecone_API, pinecone_ENV
 from retrieval import context_retrieval
+from app import USERNAME
+from flask import session
 
-USERNAME = os.environ.get("USERNAME", None)
 
 configuration = Config("config.json")
 DATE_FORMAT = configuration.DATE_FORMAT
@@ -36,6 +37,13 @@ pinecone.init(
     api_key=pinecone_API,
     environment=pinecone_ENV,
 )
+
+
+def get_username():
+    try:
+        return session.get("username")
+    except RuntimeError:
+        return "penguins"
 
 
 def get_information(character_name) -> None | tuple:
@@ -77,7 +85,7 @@ def run_query_and_generate_answer(
     context: list[str],
     index_name: str = "chatnpc-index",
     save: bool = True,
-) -> tuple[str, int, int]:
+) -> str | tuple[str, int, int]:
     """
     Runs a query on a Pinecone index and generates an answer based on the response context.
     :param query: The query to be run on the index.
@@ -161,20 +169,20 @@ def retrieve_context_list(
     embedded_query: list[float] = embed(query=query)
     # connect to index
     index = pinecone.Index(index_name)
-    # retrieve memories using ONLY cosine similarity
     if impact_score:
         # retrieve memories using recency, poignancy, and relevance metrics
         return context_retrieval(
             namespace=namespace, query_embedding=embedded_query, n=n
         )
     else:
+        # retrieve memories using ONLY cosine similarity
         responses = index.query(
             embedded_query,
             top_k=n,
             include_metadata=True,
             namespace=namespace,
             filter={
-                "user": USERNAME,
+                "user": get_username(),
                 "$or": [
                     {"type": {"$eq": "background"}},
                     {"type": {"$eq": "response"}},
@@ -227,7 +235,7 @@ def handle_contradiction(
             include_metadata=True,
             namespace=namespace,
             filter={
-                "user": USERNAME,
+                "user": get_username(),
                 "$or": [
                     {"type": {"$eq": "background"}},
                     {"type": {"$eq": "response"}},
@@ -248,7 +256,7 @@ def handle_contradiction(
                     namespace, s2_vector["vectors"]["s2"]["metadata"]["text"]
                 ),
                 "last_accessed": cur_time.strftime(DATE_FORMAT),
-                "user": USERNAME,
+                "user": get_username(),
             },
             "values": s2_vector["vectors"]["s2"]["values"],
         }  # build dict for upserting
@@ -271,7 +279,7 @@ def handle_contradiction(
                     namespace, s2_vector["vectors"]["s2"]["metadata"]["text"]
                 ),
                 "last_accessed": cur_time.strftime(DATE_FORMAT),
-                "user": USERNAME,
+                "user": get_username(),
             },
             "values": s2_vector["vectors"]["s2"]["values"],
         }  # build dict for upserting
@@ -286,7 +294,7 @@ def handle_contradiction(
             top_k=1,
             namespace=namespace,
             filter={
-                "user": USERNAME,
+                "user": get_username(),
             },
         )
         # delete s1, s2, and s1 copy
@@ -303,7 +311,7 @@ def handle_contradiction(
             include_metadata=True,
             inclue_vectors=True,
             namespace=namespace,
-            fileter={"user": USERNAME},
+            fileter={"user": get_username()},
         )  # get record with highest index value
 
         if to_move_up[
@@ -399,6 +407,7 @@ def upload_background(character: str, index_name: str = "chatnpc-index") -> None
 
     for i, info in enumerate(data_facts):
         if i == 99:  # recommended batch limit of 100 vectors
+
             index.upsert(vectors=data_vectors, namespace=namespace)
             data_vectors = []
         info_dict: dict = {
@@ -408,7 +417,7 @@ def upload_background(character: str, index_name: str = "chatnpc-index") -> None
                 "type": "background",
                 "poignancy": 10,
                 "last_accessed": cur_time.strftime(DATE_FORMAT),
-                "user": USERNAME,
+                "user": get_username(),
             },
             "values": embed(info),
         }
@@ -440,11 +449,12 @@ def upload_contradiction(
                 "type": "response",
                 "poignancy": 10,
                 "last_accessed": cur_time.strftime(DATE_FORMAT),
-                "user": USERNAME,
+                "user": get_username(),
             },
             "values": embed(info),
         }  # build dict for upserting
         data_vectors.append(info_dict)
+
     index.upsert(vectors=data_vectors, namespace=namespace)  # upsert all remaining data
 
 
@@ -483,6 +493,7 @@ def upload(
     # add new data to database
     for i, info in enumerate(data):
         if i == 99:  # recommended batch limit of 100 vectors
+
             index.upsert(vectors=data_vectors, namespace=namespace)
             data_vectors = []
         info_dict: dict = {
@@ -492,12 +503,13 @@ def upload(
                 "type": text_type,
                 "poignancy": find_importance(namespace, info),
                 "last_accessed": cur_time.strftime(DATE_FORMAT),
-                "user": USERNAME,
+                "user": get_username(),
             },
             "values": embed(info),
         }  # build dict for upserting
         data_vectors.append(info_dict)
         total_vectors += 1
+
     index.upsert(vectors=data_vectors, namespace=namespace)  # upsert all remaining data
 
 
@@ -631,10 +643,10 @@ def answer(
         cur_voice: str = model_pairings[namespace.replace("-", "_")]
 
     if not os.path.exists(
-        f"static/audio/{name_conversion(to_snake_case=False, to_convert=namespace)}"
+        f"static/audio/{get_username()}/{name_conversion(to_snake_case=False, to_convert=namespace)}"
     ):
         os.makedirs(
-            f"static/audio/{name_conversion(to_snake_case=False, to_convert=namespace)}"
+            f"static/audio/{get_username()}/{name_conversion(to_snake_case=False, to_convert=namespace)}"
         )
 
     msgs: list[dict] = chat_history
@@ -656,7 +668,7 @@ def answer(
         filename = f"{namespace}_{timestamp}.mp3"
 
         audio_reply.stream_to_file(
-            f"static/audio/{name_conversion(to_snake_case=False, to_convert=namespace)}/{filename}"
+            f"static/audio/{get_username()}/{name_conversion(to_snake_case=False, to_convert=namespace)}/{filename}"
         )
     return clean_res, int(res.usage.prompt_tokens), int(res.usage.completion_tokens)
 
@@ -667,7 +679,6 @@ def update_history(
     prompt: str,
     response: str,
     index: pinecone.Index,
-    character: str = "Player",
 ) -> None:
     """
     Update the history of the current chat with new responses
@@ -675,19 +686,26 @@ def update_history(
     :param info_file: file where chat history is logged
     :param prompt: prompt user input
     :param response: response given by LLM
-    :param index:
-    :param character: the character we are conversing with
+    :param index: The Pinecone index data will be saved to
     """
     upload(namespace, [prompt], index, text_type="query")  # upload prompt to pinecone
     upload(
         namespace, [response], index, text_type="response"
     )  # upload response to pinecone
 
-    info_file = f"Text Summaries/Chat Logs/{info_file.split('/')[-1]}"  # swap directory
+    log_dir = "Text Summaries/Chat Logs"
+    if not os.path.exists(log_dir):
+        os.makedirs(log_dir)  # Create the directory if it doesn't exist
+
+    user_dir = os.path.join(log_dir, get_username())
+    if not os.path.exists(user_dir):
+        os.makedirs(user_dir)  # Create the user directory if it doesn't exist
+
+    info_file = os.path.join(user_dir, os.path.basename(info_file))  # Construct path
 
     with open(info_file, "a") as history_file:
         history_file.write(
-            f"{character}: {prompt}\n"
+            f"{get_username()}: {prompt}\n"
             f"{name_conversion(False, namespace).replace('-', ' ')}: {response}\n"
         )  # save chat logs
 
@@ -726,7 +744,7 @@ if __name__ == "__main__":
             "type": "response",
             "poignancy": 6,
             "last_accessed": cur_time.strftime(DATE_FORMAT),
-            "user": USERNAME,
+            "user": get_username(),
         },
         "values": embed("This is a test boi"),
     }
@@ -737,7 +755,7 @@ if __name__ == "__main__":
             "type": "response",
             "poignancy": 5,
             "last_accessed": cur_time.strftime(DATE_FORMAT),
-            "user": USERNAME,
+            "user": get_username(),
         },
         "values": embed(""),
     }

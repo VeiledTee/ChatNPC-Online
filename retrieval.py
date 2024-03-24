@@ -3,8 +3,14 @@ from datetime import datetime
 
 import numpy as np
 import pinecone
+from flask import session
 
-USERNAME = os.environ.get("USERNAME", None)
+
+def get_username():
+    try:
+        return session.get("username")
+    except RuntimeError:
+        return "penguins"
 
 
 def cos_sim(a: np.ndarray, b: np.ndarray) -> float:
@@ -88,7 +94,7 @@ def context_retrieval(
         include_metadata=True,
         namespace=namespace,
         filter={
-            "user": USERNAME,
+            "user": get_username(),
             "$or": [
                 {"type": {"$eq": "background"}},
                 {"type": {"$eq": "response"}},

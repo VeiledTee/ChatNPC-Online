@@ -19,6 +19,8 @@ from keys import flask_secret_key
 
 start_sent, start_received = global_functions.get_network_usage()
 
+USERNAME = None
+
 
 def create_app():
     app = Flask(__name__)
@@ -41,13 +43,19 @@ def create_app():
         username = data.get("username")
         session["username"] = username
         os.environ["USERNAME"] = username
-        return jsonify({"message": "Username set successfully"})
+        logger.info("Username set successfully")
+        global USERNAME
+        USERNAME = username
+        print(f"Username: {os.environ.get('USERNAME')}")
+        print(f"Global Username: {USERNAME}")
+        print(f"Flask Username: {session.get('username')}")
+        return jsonify({"message": f"Username set successfully to {username}"})
 
     @app.route("/select-character", methods=["POST"])
     def select_character():
         data = request.get_json()
         selected_character = data.get("character")
-        print(selected_character)
+        print(f"Selected: {selected_character}")
         # Process the selected character as needed
         return jsonify({"message": "Character selected successfully"})
 
@@ -58,6 +66,9 @@ def create_app():
     @app.route("/chat", methods=["POST"])
     def chat() -> Response:
         user_input: str = request.json.get("user_input")  # what the user said
+        print(f"Username: {os.environ.get('USERNAME', None)}")
+        print(f"Global Username: {USERNAME}")
+        print(f"Flask Username: {session.get('username')}")
 
         if user_input.lower() == "bye":
             end_sent, end_recv = global_functions.get_network_usage()
@@ -88,7 +99,7 @@ def create_app():
             namespace=cur_namespace,
             query=user_input,
             impact_score=True,
-            n=10,
+            n=1,
         )
 
         logger.info(f"Pre-check context: \t\t{context}")
@@ -126,8 +137,11 @@ def create_app():
             session["options"] = (
                 options  # Store options in session for future reference
             )
-            response_text = f"Select one of the following options to be identified as a “True” option. " \
-                            f"{selected_character}’s memory will be updated accordingly"
+            response_text = (
+                f"Select one of the following options to be identified as the “True” statement of fact. "
+                f"{selected_character}’s memory will be updated accordingly. If you are unsure which option to choose, "
+                f"select the first option."
+            )
             return jsonify({"response": response_text, "options": options})
 
         selected_option = request.json.get("selected_option", None)
@@ -180,7 +194,7 @@ def create_app():
             namespace=cur_namespace,
             query=user_input,
             impact_score=True,
-            n=10,
+            n=1,
         )
         logger.info(f"Context: {context}")
 
@@ -220,9 +234,9 @@ def create_app():
         logger.info(f"Background uploaded successfully for {selected_character}")
         return ""
 
-    @app.route("/get_latest_audio/<character_name>")
-    def get_latest_audio(character_name):
-        audio_dir = os.path.join(os.path.join("static", "audio"), character_name)
+    @app.route("/get_latest_audio/<username>/<character_name>")
+    def get_latest_audio(username, character_name):
+        audio_dir = os.path.join(os.path.join("static", "audio", username), character_name)
 
         # Get a list of all audio files in the directory
         audio_files = glob.glob(os.path.join(audio_dir, "*.mp3"))
@@ -233,7 +247,9 @@ def create_app():
         # Get the URL of the most recent audio file
         if audio_files:
             latest_audio_filename = os.path.basename(audio_files[0])
-            latest_audio_url = f"/get_audio/{character_name}/{latest_audio_filename}"
+            latest_audio_url = (
+                f"/static/audio/{username}/{character_name}/{latest_audio_filename}"
+            )
             logger.info(f"Playing audio from {latest_audio_filename}")
             return jsonify({"latest_audio_url": latest_audio_url})
         else:

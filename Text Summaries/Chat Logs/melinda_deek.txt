@@ -1,6 +1,3 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:0d311cae5c13e52359153da89b03caf450b725493a63b3eae4ee4fcf9f7aebfa
-size 397
 Player: What do you do?
 Melinda Deek: I serve the village of Ashbourne as its knight, upholding the values of chivalry and protecting the people from threats such as bandits. My duties involve sword fighting and horsemanship, skills in which I have been trained since a young age. I reside in Redwood Manor, which is situated near the heart of Ashbourne.
 Player: 
