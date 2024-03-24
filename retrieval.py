@@ -1,9 +1,10 @@
-import numpy as np
-from datetime import datetime
-import pinecone
 import os
+from datetime import datetime
 
-USERNAME = os.environ.get('USERNAME', None)
+import numpy as np
+import pinecone
+
+USERNAME = os.environ.get("USERNAME", None)
 
 
 def cos_sim(a: np.ndarray, b: np.ndarray) -> float:
@@ -91,7 +92,7 @@ def context_retrieval(
             "$or": [
                 {"type": {"$eq": "background"}},
                 {"type": {"$eq": "response"}},
-            ]
+            ],
         },
     )  # don't need to return values cuz we get score
 

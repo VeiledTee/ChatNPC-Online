@@ -3,10 +3,7 @@ from typing import List
 
 import pinecone
 
-from global_functions import (
-    extract_name,
-    name_conversion,
-)
+from global_functions import extract_name, name_conversion
 from keys import pinecone_API, pinecone_ENV
 from webchat import get_information, load_file_information, upload_background
 
@@ -14,7 +11,9 @@ from webchat import get_information, load_file_information, upload_background
 def delete_all_vectors(names_of_characters) -> None:
     for i in range(len(names_of_characters)):
         character: str = list(names.keys())[i]
-        data: str = f"Text Summaries/Summaries/{names_of_characters[character].lower()}.txt"
+        data: str = (
+            f"Text Summaries/Summaries/{names_of_characters[character].lower()}.txt"
+        )
         namespace: str = extract_name(data).lower()
         index.delete(deleteAll=True, namespace=namespace)
 

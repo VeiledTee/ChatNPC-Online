@@ -1,22 +1,21 @@
 import glob
+import logging
 import os
 from time import perf_counter
-import logging
 
 from flask import (
     Flask,
-    render_template,
-    jsonify,
-    request,
-    session,
-    send_from_directory,
     Response,
+    jsonify,
+    render_template,
+    request,
+    send_from_directory,
+    session,
 )
 
 import global_functions
 import webchat
 from keys import flask_secret_key
-
 
 start_sent, start_received = global_functions.get_network_usage()
 
@@ -29,7 +28,9 @@ def create_app():
     # configure logger
     logger = logging.getLogger(__name__)
     logger.setLevel(logging.DEBUG)
-    formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+    formatter = logging.Formatter(
+        "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    )
     stream_handler = logging.StreamHandler()
     stream_handler.setFormatter(formatter)
     logger.addHandler(stream_handler)
@@ -66,11 +67,15 @@ def create_app():
             bytes_recv = end_recv - start_received
 
             logger.info(f"Sent: {bytes_sent / (1024 * 1024):.2f} MB")  # convert to MB
-            logger.info(f"Received: {bytes_recv / (1024 * 1024):.2f} MB")  # convert to MB
+            logger.info(
+                f"Received: {bytes_recv / (1024 * 1024):.2f} MB"
+            )  # convert to MB
             return "Goodbye!"
 
         data = request.get_json()
-        selected_character: str = global_functions.name_conversion(to_snake_case=False, to_convert=data.get("character"))
+        selected_character: str = global_functions.name_conversion(
+            to_snake_case=False, to_convert=data.get("character")
+        )
         print(f"Chosen: {selected_character}")
 
         time_start = perf_counter()
@@ -88,7 +93,10 @@ def create_app():
 
         logger.info(f"Pre-check context: \t\t{context}")
 
-        base_options: list[str] = ["Both statements are true", "Neither statement is true"]
+        base_options: list[str] = [
+            "Both statements are true",
+            "Neither statement is true",
+        ]
         contradictory_premises = None
         contradiction: bool = False
 
@@ -116,9 +124,14 @@ def create_app():
 
         if contradiction:
             # Define options when the flag is encountered
-            options = [contradictory_premises[0], contradictory_premises[1]] + base_options
+            options = [
+                contradictory_premises[0],
+                contradictory_premises[1],
+            ] + base_options
             logger.info(f"Options: {options}")
-            session["options"] = options  # Store options in session for future reference
+            session["options"] = (
+                options  # Store options in session for future reference
+            )
             response_text = "Which of the following statements is true?"
             return jsonify({"response": response_text, "options": options})
 
@@ -127,7 +140,9 @@ def create_app():
 
         if selected_option == 0:  # DB is correct, new info is wrong
             logger.info(f"Context: {context}")
-            logger.info(f"Selected Option: {selected_option} | {options[selected_option]}")
+            logger.info(
+                f"Selected Option: {selected_option} | {options[selected_option]}"
+            )
             webchat.handle_contradiction(
                 contradictory_index=selected_option,
                 namespace=cur_namespace,
@@ -135,7 +150,9 @@ def create_app():
         elif selected_option == 1:  # DB is incorrect, new info is correct
             logger.info(f"Context: {context}")
             context[context.index(options[0])] = options[selected_option]
-            logger.info(f"Selected Option: {selected_option} | {options[selected_option]}")
+            logger.info(
+                f"Selected Option: {selected_option} | {options[selected_option]}"
+            )
             webchat.handle_contradiction(
                 contradictory_index=selected_option,
                 namespace=cur_namespace,
@@ -144,7 +161,9 @@ def create_app():
         elif selected_option == 2:  # both correct
             logger.info(f"Context: {context}")
             context.append(options[1])
-            logger.info(f"Selected Option: {selected_option} | {options[selected_option]}")
+            logger.info(
+                f"Selected Option: {selected_option} | {options[selected_option]}"
+            )
             logger.info(f"Updated Context: {context}")
             webchat.handle_contradiction(
                 contradictory_index=selected_option,
@@ -153,7 +172,9 @@ def create_app():
         elif selected_option == 3:  # neither correct
             logger.info(f"Context: {context}")
             context.remove(options[0])
-            logger.info(f"Selected Option: {selected_option} | {options[selected_option]}")
+            logger.info(
+                f"Selected Option: {selected_option} | {options[selected_option]}"
+            )
             logger.info(f"Updated Context: {context}")
             webchat.handle_contradiction(
                 contradictory_index=selected_option,
@@ -182,7 +203,11 @@ def create_app():
         logger.info(f"{selected_character} reply: {reply}")
 
         return jsonify(
-            {"character": selected_character, "response": reply, "selected_option": None}
+            {
+                "character": selected_character,
+                "response": reply,
+                "selected_option": None,
+            }
         )
 
     @app.route("/upload_background", methods=["POST"])
@@ -217,7 +242,7 @@ def create_app():
         audio_dir = os.path.join(os.path.join("static", "audio"), character_name)
         return send_from_directory(audio_dir, filename)
 
-    @app.route('/clean-slate', methods=['POST'])
+    @app.route("/clean-slate", methods=["POST"])
     def run_nuke_script():
         exec(open("pinecone_clean_slate.py").read())
         return jsonify({"message": "Script executed successfully"})
