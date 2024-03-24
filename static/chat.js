@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(data => {
                 const responseText = data.response;
                 const options = data.options;
-
+                // if contradiction detected
                 if (options && options.length > 0) {
                     const optionsList = options.map((option, index) =>
                         `<div class="options-container">
@@ -193,12 +193,13 @@ document.addEventListener('DOMContentLoaded', function () {
                             </button>
                         </div>`
                     ).join('');
-                    chatbox.innerHTML += `<p><strong>${nameConversion(toSnakeCase=false, toConvert=selectedCharacter)}: </strong>${responseText}</p>`; // Prepend the response phrase
+                    chatbox.innerHTML += `<p><strong>ChatNPC: </strong>${responseText}</p>`; // Prepend the response phrase
                     chatbox.innerHTML += optionsList;
-            } else {
+            } else {  // if no contradiction, just have character reply
                 chatbox.innerHTML += `<p><strong>${nameConversion(toSnakeCase=false, toConvert=selectedCharacter)}: </strong>${responseText}</p>`;
+                getDynamicAudioURLAndPlay();
+                hideThinkingAnimation();
             }
-            hideThinkingAnimation();
             chatbox.scrollTop = chatbox.scrollHeight;
         })
         .catch(error => {
@@ -264,8 +265,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     chatbox.innerHTML += optionsList;
                 } else {
                     chatbox.innerHTML += `<p><strong>${nameConversion(toSnakeCase=false, toConvert=selectedCharacter)}:</strong> ${responseText}</p>`;
+                    getDynamicAudioURLAndPlay();
+                    hideThinkingAnimation();
                 }
-
                 chatbox.scrollTop = chatbox.scrollHeight;
             })
             .catch(error => {
@@ -301,8 +303,6 @@ document.addEventListener('DOMContentLoaded', function () {
         if (e.target && e.target.tagName === 'LI') {
             // Toggle 'clicked' class
             e.target.classList.toggle('clicked');
-
-            // Your existing code for selecting a character
         }
     });
 
