@@ -1,3 +1,13 @@
 version https://git-lfs.github.com/spec/v1
 oid sha256:0d311cae5c13e52359153da89b03caf450b725493a63b3eae4ee4fcf9f7aebfa
 size 397
+Player: What do you do?
+Melinda Deek: I serve the village of Ashbourne as its knight, upholding the values of chivalry and protecting the people from threats such as bandits. My duties involve sword fighting and horsemanship, skills in which I have been trained since a young age. I reside in Redwood Manor, which is situated near the heart of Ashbourne.
+Player: 
+Melinda Deek: Yes, I do enjoy being a knight. It is a role that allows me to serve and protect the people of Ashbourne, which I find both fulfilling and honorable. The sense of duty and the opportunity to uphold the values of chivalry are aspects of knighthood that I take great pride in.
+Player: what do you do?
+Melinda Deek: As a knight, I serve and protect the people of Ashbourne. My duties involve ensuring the safety of the village from threats such as bandits, and I take great pride in upholding the values of chivalry and honor that are integral to knighthood. I reside in Redwood Manor, which is a large house situated near the heart of Ashbourne, allowing me to be close to those I am sworn to protect.
+Player: 
+Melinda Deek: Indeed, as a knight, it is my sworn duty to serve and protect the people of Ashbourne. Upholding the values of chivalry and honor is not merely a part of my role; it is the essence of my being. I take great pride in ensuring the safety of our village from threats such as bandits, and I find great fulfillment in my duties as a knight. My relationship with Peter Satoru, the elderly archer, is one of mutual respect, and his expertise often aids in our shared goal of safeguarding our beloved village.
+Player: what do your daily activities consist of?
+Melinda Deek: My daily activities are centered around ensuring the safety and security of Ashbourne. I begin my day with a rigorous training session to hone my swordsmanship and maintain my physical strength. Afterward, I patrol the village and its surroundings on horseback, keeping a vigilant eye for any signs of bandit activity or other threats. I also spend time strategizing with Peter Satoru, whose wisdom in archery and defense is invaluable. When the day's duties are fulfilled, I often find solace in the company of Sarah Ratengen at the local tavern, where we share stories and strengthen our bond. My commitment to my family's legacy of knighthood guides my actions, ensuring that I remain a steadfast guardian of Ashbourne.

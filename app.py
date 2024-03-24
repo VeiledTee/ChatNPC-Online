@@ -112,12 +112,6 @@ def create_app():
                     contradiction = True
                     break
 
-        # webchat.upload_contradiction(
-        #     namespace=cur_namespace,
-        #     s1="test 3",
-        #     s2="user query",
-        # )
-
         logger.info(f"User Input: \t\t\t{user_input}")
         logger.info(f"Contradiction: \t\t\t{contradiction}")
         logger.info(f"Contradictory Premises: {contradictory_premises}")
@@ -132,7 +126,8 @@ def create_app():
             session["options"] = (
                 options  # Store options in session for future reference
             )
-            response_text = "Which of the following statements is true?"
+            response_text = f"Select one of the following options to be identified as a “True” option. " \
+                            f"{selected_character}’s memory will be updated accordingly"
             return jsonify({"response": response_text, "options": options})
 
         selected_option = request.json.get("selected_option", None)
@@ -181,6 +176,12 @@ def create_app():
                 namespace=cur_namespace,
             )
 
+        context: list[str] = webchat.retrieve_context_list(
+            namespace=cur_namespace,
+            query=user_input,
+            impact_score=True,
+            n=10,
+        )
         logger.info(f"Context: {context}")
 
         reply, prompt_tokens, reply_tokens = webchat.run_query_and_generate_answer(
@@ -233,6 +234,7 @@ def create_app():
         if audio_files:
             latest_audio_filename = os.path.basename(audio_files[0])
             latest_audio_url = f"/get_audio/{character_name}/{latest_audio_filename}"
+            logger.info(f"Playing audio from {latest_audio_filename}")
             return jsonify({"latest_audio_url": latest_audio_url})
         else:
             return jsonify({"error": "No audio files found"})
