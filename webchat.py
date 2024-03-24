@@ -7,6 +7,7 @@ import pinecone
 from openai import OpenAI
 
 import global_functions
+from config import Config
 from global_functions import (
     embed,
     extract_name,
@@ -16,10 +17,8 @@ from global_functions import (
 )
 from keys import openAI_API, pinecone_API, pinecone_ENV
 from retrieval import context_retrieval
-from config import Config
-import os
 
-USERNAME = os.environ.get('USERNAME', None)
+USERNAME = os.environ.get("USERNAME", None)
 
 configuration = Config("config.json")
 DATE_FORMAT = configuration.DATE_FORMAT
@@ -179,7 +178,7 @@ def retrieve_context_list(
                 "$or": [
                     {"type": {"$eq": "background"}},
                     {"type": {"$eq": "response"}},
-                ]
+                ],
             },
         )
 
@@ -232,7 +231,7 @@ def handle_contradiction(
                 "$or": [
                     {"type": {"$eq": "background"}},
                     {"type": {"$eq": "response"}},
-                ]
+                ],
             },
         )
         # delete s1, s2, and s1 copy
@@ -272,7 +271,7 @@ def handle_contradiction(
                     namespace, s2_vector["vectors"]["s2"]["metadata"]["text"]
                 ),
                 "last_accessed": cur_time.strftime(DATE_FORMAT),
-"user": USERNAME,
+                "user": USERNAME,
             },
             "values": s2_vector["vectors"]["s2"]["values"],
         }  # build dict for upserting
@@ -288,7 +287,7 @@ def handle_contradiction(
             namespace=namespace,
             filter={
                 "user": USERNAME,
-            }
+            },
         )
         # delete s1, s2, and s1 copy
         index.delete(
@@ -304,9 +303,7 @@ def handle_contradiction(
             include_metadata=True,
             inclue_vectors=True,
             namespace=namespace,
-            fileter={
-                "user": USERNAME
-            }
+            fileter={"user": USERNAME},
         )  # get record with highest index value
 
         if to_move_up[
@@ -370,8 +367,10 @@ def upload_background(character: str, index_name: str = "chatnpc-index") -> None
     with open("Text Summaries/characters.json", "r") as character_info_file:
         character_names = json.load(character_info_file)
 
-    if ' ' not in character:
-        character = global_functions.name_conversion(to_snake_case=False, to_convert=character)
+    if " " not in character:
+        character = global_functions.name_conversion(
+            to_snake_case=False, to_convert=character
+        )
 
     data_file: str = f"Text Summaries/Summaries/{character_names[character]}.txt"
     # setting_file: str = "Text Summaries/Summaries/ashbourne.txt"
@@ -409,7 +408,7 @@ def upload_background(character: str, index_name: str = "chatnpc-index") -> None
                 "type": "background",
                 "poignancy": 10,
                 "last_accessed": cur_time.strftime(DATE_FORMAT),
-"user": USERNAME,
+                "user": USERNAME,
             },
             "values": embed(info),
         }
@@ -441,7 +440,7 @@ def upload_contradiction(
                 "type": "response",
                 "poignancy": 10,
                 "last_accessed": cur_time.strftime(DATE_FORMAT),
-"user": USERNAME,
+                "user": USERNAME,
             },
             "values": embed(info),
         }  # build dict for upserting
@@ -493,7 +492,7 @@ def upload(
                 "type": text_type,
                 "poignancy": find_importance(namespace, info),
                 "last_accessed": cur_time.strftime(DATE_FORMAT),
-"user": USERNAME,
+                "user": USERNAME,
             },
             "values": embed(info),
         }  # build dict for upserting
@@ -521,26 +520,27 @@ def fact_rephrase(phrase: str, namespace: str, text_type: str) -> list[str]:
                 ),
             }
         )
-    elif text_type == "response":
-        msgs.append(
-            {
-                "role": "system",
-                "content": prompt_engineer_from_template(
-                    template_file="Prompts/response_rephrase.txt",
-                    data=[name_conversion(to_snake_case=False, to_convert=namespace)],
-                ),
-            }
-        )
-    elif text_type == "query":
-        msgs.append(
-            {
-                "role": "system",
-                "content": prompt_engineer_from_template(
-                    template_file="Prompts/query_rephrase.txt",
-                    data=[name_conversion(to_snake_case=False, to_convert=namespace)],
-                ),
-            }
-        )
+
+    # elif text_type == "response":
+    #     msgs.append(
+    #         {
+    #             "role": "system",
+    #             "content": prompt_engineer_from_template(
+    #                 template_file="Prompts/response_rephrase.txt",
+    #                 data=[name_conversion(to_snake_case=False, to_convert=namespace)],
+    #             ),
+    #         }
+    #     )
+    # elif text_type == "query":
+    #     msgs.append(
+    #         {
+    #             "role": "system",
+    #             "content": prompt_engineer_from_template(
+    #                 template_file="Prompts/query_rephrase.txt",
+    #                 data=[name_conversion(to_snake_case=False, to_convert=namespace)],
+    #             ),
+    #         }
+    #     )
     prompt: str = f"Split this phrase into facts: {phrase}"
     msgs.append(
         {"role": "user", "content": prompt}
@@ -720,16 +720,16 @@ if __name__ == "__main__":
     cur_time = datetime.now()
     index: pinecone.Index = pinecone.Index("chatnpc-index")
     s1_dict = {
-            "id": "s1",
-            "metadata": {
-                "text": "This is a test boi",
-                "type": "response",
-                "poignancy": 6,
-                "last_accessed": cur_time.strftime(DATE_FORMAT),
-                "user": USERNAME,
-            },
-            "values": embed('This is a test boi'),
-        }
+        "id": "s1",
+        "metadata": {
+            "text": "This is a test boi",
+            "type": "response",
+            "poignancy": 6,
+            "last_accessed": cur_time.strftime(DATE_FORMAT),
+            "user": USERNAME,
+        },
+        "values": embed("This is a test boi"),
+    }
     s2_dict = {
         "id": "s2",
         "metadata": {
@@ -739,19 +739,19 @@ if __name__ == "__main__":
             "last_accessed": cur_time.strftime(DATE_FORMAT),
             "user": USERNAME,
         },
-        "values": embed(''),
+        "values": embed(""),
     }
     # print(are_contradiction("blackfins only live in the east river", "blackfins only live in the west river"))
     # print(are_contradiction("blackfins live in the east river", "blackfins live in the west river"))
     handle_contradiction(contradictory_index=0, namespace="peter_satoru")
     print("0 works")
-    index.upsert(vectors=[s1_dict, s2_dict], namespace='peter_satoru')
+    index.upsert(vectors=[s1_dict, s2_dict], namespace="peter_satoru")
     handle_contradiction(contradictory_index=1, namespace="peter_satoru")
     print("1 works")
-    index.upsert(vectors=[s1_dict, s2_dict], namespace='peter_satoru')
+    index.upsert(vectors=[s1_dict, s2_dict], namespace="peter_satoru")
     handle_contradiction(contradictory_index=2, namespace="peter_satoru")
     print("2 works")
-    index.upsert(vectors=[s1_dict, s2_dict], namespace='peter_satoru')
+    index.upsert(vectors=[s1_dict, s2_dict], namespace="peter_satoru")
     handle_contradiction(contradictory_index=3, namespace="peter_satoru")
     print("3 works")
-    index.upsert(vectors=[s1_dict, s2_dict], namespace='peter_satoru')
+    index.upsert(vectors=[s1_dict, s2_dict], namespace="peter_satoru")

@@ -1,13 +1,13 @@
 import json
+import os
 import re
 
-import torch
-from sentence_transformers import SentenceTransformer
 import pinecone
 import psutil
-import os
+import torch
+from sentence_transformers import SentenceTransformer
 
-USERNAME = os.environ.get('USERNAME', None)
+USERNAME = os.environ.get("USERNAME", None)
 
 
 def embed(query: str) -> list[float]:
@@ -56,7 +56,6 @@ def name_conversion(to_snake_case: bool, to_convert: str) -> str:
         return converted.replace("_", " ")
 
 
-
 def namespace_exist(namespace: str) -> bool:
     """
     Check if a namespace exists in Pinecone index
@@ -74,7 +73,7 @@ def namespace_exist(namespace: str) -> bool:
             "$or": [
                 {"type": {"$eq": "background"}},
                 {"type": {"$eq": "response"}},
-            ]
+            ],
         },
     )  # query index
     return (
