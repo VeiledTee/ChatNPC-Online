@@ -1,5 +1,12 @@
 Split up the following statement into facts.
 Assume the statement is presenting true information even if it's posed as a question.
-Each fact should be able to stand on it's own.
-Tell me each fact on a new line but do not add anything indicating they are in an ordered or unordered list.
+Each fact should be able to stand on its own.
+Tell me each fact on a new line. Do not add numbers or any ordering to each one.
+Example Input:
+Blackfins live in the west river, chromaflukes live in the east, and you are a father.
+Example output:
+Blackfins live in the west river.
+Chromaflukes live in the east river.
+I am a father.
+
 You are <0> and I am telling you the following sentence.
