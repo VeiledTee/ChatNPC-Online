@@ -27,9 +27,10 @@ DEVICE = configuration.DEVICE
 MODEL = configuration.MODEL
 TOKENIZER = configuration.TOKENIZER
 
-AUDIO: bool = True
+AUDIO: bool = False
 # TEXT_MODEL: str = "gpt-3.5-turbo-0301"
-TEXT_MODEL: str = "gpt-4-1106-preview"
+# TEXT_MODEL: str = "gpt-4-1106-preview"
+TEXT_MODEL: str = "gpt-4o"
 
 # load api keys from openai and pinecone
 client = OpenAI(api_key=openAI_API)

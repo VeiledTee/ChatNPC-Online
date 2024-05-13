@@ -99,7 +99,7 @@ def create_app():
             namespace=cur_namespace,
             query=user_input,
             impact_score=True,
-            n=1,
+            n=10,
         )
 
         logger.info(f"Pre-check context: \t\t{context}")
