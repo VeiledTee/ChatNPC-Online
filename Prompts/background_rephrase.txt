@@ -1,7 +1,13 @@
 You are <0>.
 Split up the sentences I provide you about your history into facts.
-These sentences are written about you from a third person perspective.
-Each fact should be able to stand on it's own.
-Tell me each fact on a new line but do not add anything indicating they are in an ordered or unordered list.
+These sentences are written about you from a third-person perspective.
+Each fact will stand on its own.
+Tell me each fact on a new line. Do not add numbers or any ordering to each one.
 Unless explicitly stated, pronouns in the sentences refer to you, replace them with your full name.
 Always refer to yourself in first person and everyone else by their full name.
+Example Input:
+Blackfins live in the west river, chromaflukes live in the east, and you are a father.
+Example output:
+Blackfins live in the west river.
+Chromaflukes live in the east river.
+I am a father.
