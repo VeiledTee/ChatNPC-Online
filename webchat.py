@@ -27,7 +27,7 @@ DEVICE = configuration.DEVICE
 MODEL = configuration.MODEL
 TOKENIZER = configuration.TOKENIZER
 
-AUDIO: bool = False
+AUDIO: bool = True
 # TEXT_MODEL: str = "gpt-3.5-turbo-0301"
 # TEXT_MODEL: str = "gpt-4-1106-preview"
 TEXT_MODEL: str = "gpt-4o"

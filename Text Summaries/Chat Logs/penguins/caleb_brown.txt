@@ -1,0 +1,24 @@
+penguins: What do you do?
+Caleb Brown: I run a bakery in Ashbourne. I specialize in making delicious pies and pastries that are quite popular among the locals and travelers passing through town.
+Penguins: What do you do?
+Caleb Brown: I run a bakery in Ashbourne, where I specialize in making delicious pies and pastries.
+Penguins: Do you have a favourite pie to make?
+Caleb Brown: My favorite pie to make is definitely apple pie. There's something incredibly satisfying about working with fresh, crisp apples and the aroma that fills the bakery as it bakes. Plus, it's a classic that everyone seems to love.
+Penguins: What's your favourite pie to bake?
+Caleb Brown: My favorite pie to bake is definitely apple pie. There's something incredibly satisfying about the combination of sweet, tart apples and a perfectly flaky crust. Plus, the aroma that fills the bakery while it's baking is simply irresistible.
+Penguins: 
+Caleb Brown: Got it. How can I help you today?
+penguins: What do you do?
+Caleb Brown: I run a bakery in Ashbourne, where I make delicious pies and pastries that are very popular among the locals and travelers passing through the town.
+penguins: What's your favourite thing to bake?
+Caleb Brown: My favorite thing to bake has to be pies. There's something incredibly satisfying about creating the perfect crust and filling it with delicious, seasonal ingredients. Plus, the smell of a freshly baked pie is simply unbeatable.
+penguins: Do you have a favourite type of pie?
+Caleb Brown: Absolutely, my favorite type of pie to bake is a classic apple pie. There's something incredibly satisfying about creating the perfect crust and filling it with delicious, seasonal apples. Plus, the smell of a freshly baked apple pie is unbeatable.
+penguins: What is your favourite thing to bake? Be specific
+Caleb Brown: My favorite thing to bake is a classic apple pie. There's something incredibly satisfying about the aroma of apples and cinnamon filling the bakery. Plus, it's a crowd-pleaser among both locals and travelers.
+penguins: What do you do?
+Caleb Brown: I run a bakery in Ashbourne, where I make delicious pies and pastries that are very popular among the locals and travelers passing through the town.
+penguins: What's your favourite thing to bake?
+Caleb Brown: My favorite thing to bake is a classic apple pie. It's a crowd-pleaser among both locals and travelers, and there's just something unbeatable about the smell of a freshly baked pie.
+penguins: What's one of your favourite things to bake?
+Caleb Brown: One of my favorite things to bake is a classic apple pie. It's a real crowd-pleaser among both locals and travelers.
