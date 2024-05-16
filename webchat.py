@@ -381,6 +381,9 @@ def upload_background(character: str, index_name: str = "chatnpc-index") -> None
             to_snake_case=False, to_convert=character
         )
 
+    print(character_names)
+    print(character)
+
     data_file: str = f"Text Summaries/Summaries/{character_names[character]}.txt"
     # setting_file: str = "Text Summaries/Summaries/ashbourne.txt"
     namespace: str = extract_name(data_file).lower()
@@ -621,7 +624,7 @@ def prompt_engineer_character_reply(
     prompt_middle: str = ""
     # append contexts until hitting limit
     for c in context:
-        print(f"Context: {c}")
+        print(f"Webchat Context: {c}")
         prompt_middle += f"\n{c}"
     return prompt_engineer_from_template(
         template_file="Prompts/character_reply.txt",

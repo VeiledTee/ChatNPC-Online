@@ -147,6 +147,8 @@ def create_app():
         selected_option = request.json.get("selected_option", None)
         options = session.get("options", [])  # Retrieve options from session
 
+        print(f"Selected Option: {selected_option}")
+
         if selected_option == 0:  # DB is correct, new info is wrong
             logger.info(f"Context: {context}")
             logger.info(
@@ -194,7 +196,7 @@ def create_app():
             namespace=cur_namespace,
             query=user_input,
             impact_score=True,
-            n=1,
+            n=10,
         )
         logger.info(f"Context: {context}")
 

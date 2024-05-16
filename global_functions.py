@@ -51,6 +51,7 @@ def name_conversion(to_snake_case: bool, to_convert: str) -> str:
     if to_snake_case:
         return "_".join(to_convert.lower().split(" "))
     else:
+        to_convert = to_convert.replace('cc', 'cC')
         converted = "_".join(word.capitalize() for word in to_convert.split("_"))
         converted = re.sub("(-)\s*([a-zA-Z])", lambda p: p.group(0).upper(), converted)
         return converted.replace("_", " ")
