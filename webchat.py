@@ -381,9 +381,6 @@ def upload_background(character: str, index_name: str = "chatnpc-index") -> None
             to_snake_case=False, to_convert=character
         )
 
-    print(character_names)
-    print(character)
-
     data_file: str = f"Text Summaries/Summaries/{character_names[character]}.txt"
     # setting_file: str = "Text Summaries/Summaries/ashbourne.txt"
     namespace: str = extract_name(data_file).lower()
